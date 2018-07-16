@@ -36,7 +36,7 @@ while ($row = mysqli_fetch_assoc($query)) {
 	<h4>Cursos</h4>
 	<nav class="list_cursos">
 		<?php foreach ($list as $value) { ?>
-			<a href="<?bloginfo('url') ?>/cursos-e-consultoria/curso/<? echo $value['tag'] ?>/"><li><?= $value['titulo'] ?></li></a>
+			<a href="<?bloginfo('url') ?>/cursos-e-consultoria/<? echo $value['tag'] ?>/"><li><?= $value['titulo'] ?></li></a>
 		<?php } ?>
 	</nav>
 <aside>
