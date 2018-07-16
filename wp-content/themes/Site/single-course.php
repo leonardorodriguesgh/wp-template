@@ -24,7 +24,8 @@ INNER JOIN item_dia_semana_curso as ID ON ID.cd_curso = C.cd_curso
 INNER JOIN ci_dia_semana as D ON ID.cd_dia_semana = D.cd_dia_semana
 ";
 
-$sql .= ( isset($wp_query->query_vars['curso']) ) ? " WHERE C.tag_curso = '".$wp_query->query_vars['curso']."'" : " ";
+$sql .= ( isset($wp_query->query_vars['name']) ) ? " WHERE C.tag_curso = '".$wp_query->query_vars['name']."'" : " ";
+
 
 $query = mysqli_query($link, $sql);
 
@@ -40,7 +41,7 @@ while($row = mysqli_fetch_assoc($query)){
 		$vagasDisponiveis = $vagas['Disponiveis'];
 	}
 
-	if (isset($wp_query->query_vars['curso'])){
+	if (isset($wp_query->query_vars['name'])){
 		$info_curso = (object) array(
 			'id' 			=> $row['cd_curso'],
 			'dia_semana'	=> $row['nm_dia_semana'],

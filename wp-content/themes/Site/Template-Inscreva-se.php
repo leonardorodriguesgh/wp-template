@@ -49,7 +49,7 @@
 							</div>
 							<h3 class="ttl_curso"><?php  echo $value['titulo'] ?></h3>
 							<p class="txt_curso"><?php  echo string_limit_words($value['chamada'], 20) ?></p>
-							<a href="http://lisieuxtreinamento.com.br/cursos-e-consultoria/curso/<?php  echo $value['tag']; ?>">
+							<a href="/wordpress/cursos-e-consultoria/curso/<?php  echo $value['tag']; ?>">
 								<span class="btn_inscreva">INSCREVA-SE</span>
 							</a>
 						</div>

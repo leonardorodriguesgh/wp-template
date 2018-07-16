@@ -12,10 +12,10 @@ $config = Factory::fromFile('config/config.php', true);
 
 if($_POST['token']){
     /* Teste: Remover depois */
-    $host_name = "mysql.lisieuxtreinamento.com.br";
-    $database = "lisieuxtreinam";
-    $user     = "lisieuxtreinam";
-    $password = "fc219fb31";
+    $host_name = "localhost";
+    $database = "lisieux_treinamento";
+    $user     = "root";
+    $password = "";
     /* Teste: Remover depois */
 
     $conn = new PDO('mysql:host='.$host_name.';dbname='.$database,$user,$password);

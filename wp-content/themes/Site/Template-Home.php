@@ -1,4 +1,4 @@
-<?php  /* Template Name: Home TREINA */ ?>
+<?php  /* Template Name: Home */ ?>
 
 <?php get_header(); ?>
 
@@ -78,7 +78,7 @@
 							<?php echo $curso->horas; ?>h
 						</p>
 						<div class="clear"></div>
-						<a href="cursos-e-consultoria/curso/<?php echo $curso->tag; ?>">
+						<a href="cursos-e-consultoria/<?php echo $curso->tag; ?>">
 							<span class="btn-inscricao">Saiba mais</span>
 						</a>
 					</article>
@@ -99,7 +99,7 @@
 		</div>
 
 		<?php foreach ($nextCourses as $value) { ?>
-			<a href="<?php bloginfo('url'); ?>/cursos-e-consultoria/curso/<?php echo $value['tag'] ?>/">
+			<a href="<?php bloginfo('url'); ?>/cursos-e-consultoria/<?php echo $value['tag'] ?>/">
 				<div class="col-sm-4 col-md-3">
 					<article class="list_next">
 						<div class="thumbnail">
@@ -137,7 +137,7 @@
 							</p>
 						</div>
 						<div class="clear"></div>
-						<a href="cursos-e-consultoria/curso/<?php echo $value['tag']; ?>">
+						<a href="cursos-e-consultoria/<?php echo $value['tag']; ?>">
 							<span class="btn-inscricao btn-block text-center">Saiba mais</span>
 						</a>
 					</article>

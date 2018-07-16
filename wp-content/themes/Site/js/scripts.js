@@ -152,7 +152,7 @@ $(document).ready(function() {
         var _turma   = $(".item_turma").data("cod");
 
         $.ajax({
-            url: '/wp-content/themes/Site/php/verifica-compra.php',
+            url: '/wordpress/wp-content/themes/Site/php/verifica-compra.php',
             type: 'POST',
             data: {
                 codUsuario:   _codigo,
@@ -422,7 +422,7 @@ $(document).ready(function() {
                         var pagina = $("input[name=telaInicial]").val();
                         console.log(data.return);
                         // $.redirect("http://cursos.lisieuxtreinamento.com.br/authentic/", {
-                        $.redirect("/wordpress/home/autenticar/", {
+                        $.redirect("/wordpress/autenticar/", {
                             email: username,
                             tipo: data.type,
                             tela:pagina,

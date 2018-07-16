@@ -1,10 +1,15 @@
-<?
+<?php
+
+$link = mysqli_connect("localhost", "root", "", "lisieux_treinamento");
+
+mysqli_set_charset($link,"utf8");
+
 $turmas = array();
 $sql = "SELECT T.cd_turma_curso, T.dt_inicio_turma, T.dt_final_turma, T.qt_vaga_disponivel,T.ic_boleto, T.qt_cartao FROM ci_turma_curso T INNER JOIN ci_curso C ON T.cd_curso = C.cd_curso WHERE T.cd_curso = ".$course_id."";
-$query = mysql_query($sql);
+$query = mysqli_query($link, $sql);
 $count = 1;
 
-while ( $row = mysql_fetch_assoc( $query ) ) {
+while ( $row = mysqli_fetch_assoc( $query ) ) {
 	$turmas[] = array(
 		'id'	 => $row['cd_turma_curso'],
 		'numero' => $count++,

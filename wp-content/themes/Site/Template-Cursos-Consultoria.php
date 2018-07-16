@@ -31,7 +31,7 @@
 						echo "<h3 class='no-results'> Curso ou consultoria não encontrado </h3>";
 					else :
 				?>
-					<a href="<?php bloginfo('url'); ?>/cursos-e-consultoria/curso/<?php echo $value['tag'] ?>/">
+					<a href="<?php bloginfo('url'); ?>/cursos-e-consultoria/<?php echo $value['tag'] ?>/">
 						<div class="col-sm-6 col-md-4">
 							<article class="list_next">
 								<div class="thumbnail">

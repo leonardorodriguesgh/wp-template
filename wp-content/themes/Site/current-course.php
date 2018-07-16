@@ -4,6 +4,7 @@
 
 	mysqli_set_charset($link,"utf8");
 	
+	//Como vou passar tudo isso se no meu banco nao existem tantos campos?
 	$sql = 	
 	"
 		SELECT  cd_curso, tag_curso, nm_chamada_curso, ds_chamada_curso, url_image_chamada_curso, ds_informacao_curso, qt_numero_aulas, qt_total_horas, nm_url_capa_curso, nm_url_landing_page

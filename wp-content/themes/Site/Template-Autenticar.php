@@ -9,10 +9,11 @@ require_once('php/jwt-test/vendor/autoload.php');
 use Firebase\JWT\JWT;
 
 $wp_session = WP_Session::get_instance();
-
+print_r($wp_session['UserID']);
 // if(!session_init()) : 
 if($wp_session['UserID'] == null):
 	// echo "Sessão Falhou";
+
 	if($_POST['token']){
 		// echo $_POST['token'];
 
@@ -30,11 +31,11 @@ if($wp_session['UserID'] == null):
     	// $_POST['user'] = $usuario;
     	// $_POST['typeUser'] = $typeUser;
 
-	    if( $typeUser == "studant")
-	          $sql = "SELECT cd_aluno as id, nm_email as email, nm_aluno as nome, nm_url_foto_perfil as foto FROM ci_aluno WHERE nm_email = '".$usuario."' AND ic_ativo = 1"; 
-	    else
+	    if( $typeUser == "studant"){
+	          $sql = "SELECT cd_aluno as id, nm_email as email, nm_aluno as nome, nm_url_foto_perfil as foto FROM ci_aluno WHERE nm_email = '".$usuario."' AND ic_ativo = 1";
+	    }else{
 	          $sql = "SELECT cd_patrocinador as id, nm_email as email, nm_patrocinador as nome, nm_url_foto_perfil as foto FROM ci_patrocinador WHERE nm_email = '".$usuario."' AND ic_ativo = 1";
-
+	        }
 	     $query = mysqli_query($link, $sql);
 
 	     if (mysqli_num_rows($query) > 0) {
@@ -51,6 +52,7 @@ if($wp_session['UserID'] == null):
 	               	$wp_session['typeUser'] = $typeUser;
 					$cookie_name = "token";
 					$cookie_value = $_POST['token'];
+
 					setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/",'http://cursos.lisieuxtreinamento.com.br/',true,true); // 86400 = 1 day
 					$telaRedirect = $_POST['tela'];
 					echo '<script> window.location.href = <?php php echo $telaRedirect; ?> </script>';
@@ -102,7 +104,7 @@ if($wp_session['UserID'] == null):
 	}
 else :
 	$wp_session = WP_Session::get_instance();
-	header("Location: localhost/wordpress);
+	header("Location: /wordpress");
 
 endif;
 

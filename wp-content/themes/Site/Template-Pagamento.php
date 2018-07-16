@@ -1,5 +1,5 @@
-<? /*Template Name: Pagamento */ ?>
-<? get_header() ?>
+<?php  /*Template Name: Pagamento */ ?>
+<?php  get_header() ?>
 
 <div class="title_page contato">
 	<div class="container">
@@ -8,9 +8,9 @@
 </div>
 
 
-<? include('single-course.php'); ?>
+<?php  include('single-course.php'); ?>
 
-<? if (isset($info_curso)) : ?>
+<?php  if (isset($info_curso)) : ?>
 
 	<section class="content_course_intern">
 		<div class="container">
@@ -18,42 +18,42 @@
 				
 				<div class="apresentacao_curso">
 					<picture>
-						<source media="(min-width: 768px)" srcset="<? echo $info_curso->image ?>">
-						<img class="img-responsive" src="<? echo $info_curso->image_mob ?>">
+						<source media="(min-width: 768px)" srcset="<?php  echo $info_curso->image ?>">
+						<img class="img-responsive" src="<?php  echo $info_curso->image_mob ?>">
 					</picture>
-					<h3 class="ttl_curso"><? echo $info_curso->titulo ?></h3>
-					<p class="txt_curso"><? echo $info_curso->chamada ?></p>
+					<h3 class="ttl_curso"><?php  echo $info_curso->titulo ?></h3>
+					<p class="txt_curso"><?php  echo $info_curso->chamada ?></p>
 				</div>
 
-				<? require('lotes.php'); ?>
+				<?php  require('lotes.php'); ?>
 
-				<? foreach ($lotes as $value) : ?>
-					<? if($value['situacao'] == 1) : ?>
-						<?  $price = number_format($value['valor'], 2, ',', '.');
+				<?php  foreach ($lotes as $value) : ?>
+					<?php  if($value['situacao'] == 1) : ?>
+						<?php   $price = number_format($value['valor'], 2, ',', '.');
 							echo '<input type="hidden" value="'.$price.'" id="precoCurso"/>'; ?>
 						<article class="content_price" id="content_compra">
 							<div class="col-sm-6 col-md-6">
 								<div class="center">
-									<img src="<? bloginfo('template_url') ?>/images/icon_lotes.gif">
-									<input type="hidden" value="<? echo $value['lote'] + 1 ?>" id="lote_atual">
+									<img src="<?php  bloginfo('template_url') ?>/images/icon_lotes.gif">
+									<input type="hidden" value="<?php  echo $value['lote'] + 1 ?>" id="lote_atual">
 									<p>
-										Lote <? echo $value['lote'] + 1 ?><br>
-										<strong>Disponível até </strong><? echo date('d/m/Y',strtotime($value['final'])) ?>
+										Lote <?php  echo $value['lote'] + 1 ?><br>
+										<strong>Disponível até </strong><?php  echo date('d/m/Y',strtotime($value['final'])) ?>
 									</p>
 								</div>
 							</div>
 							<div class="col-sm-6 col-md-6">
 								<div class="center">
-									<img src="<? bloginfo('template_url') ?>/images/icon_investimento.jpg">
+									<img src="<?php  bloginfo('template_url') ?>/images/icon_investimento.jpg">
 									<p>
 										Investimento<br>
-										<strong>R$ <? echo number_format($value['valor'], 2, ',', '.'); ?></strong>
+										<strong>R$ <?php  echo number_format($value['valor'], 2, ',', '.'); ?></strong>
 									</p>
 								</div>
 							</div>
 						</article>
-					<? endif ?>
-				<? endforeach ?>
+					<?php  endif ?>
+				<?php  endforeach ?>
 
 				<section class="content_turmas">
 
@@ -61,14 +61,14 @@
 						<h4>ESCOLHA A TURMA <span></span></h4>
 					</div>
 
-					<? require('turmas.php'); ?>
+					<?php  require('turmas.php'); ?>
 
-					<? foreach ($turmas as $value) : 
+					<?php  foreach ($turmas as $value) : 
 						$cartao = $value['cartao'];
 					?>
-						<article class="item_turma col-xs-12 col-md-12" data-cod="<? echo $value['numero'] ?>" data-cadcom="<? echo $value['id'] ?>">
+						<article class="item_turma col-xs-12 col-md-12" data-cod="<?php  echo $value['numero'] ?>" data-cadcom="<?php  echo $value['id'] ?>">
 							<div class="left col-sm-8 col-md-8">
-								<p>Turma <? echo $value['numero'] ?>: <strong>De <? echo date('d/m/Y',strtotime($value['inicio'])) ?> até <? echo date('d/m/Y',strtotime($value['final'])) ?></strong></p>
+								<p>Turma <?php  echo $value['numero'] ?>: <strong>De <?php  echo date('d/m/Y',strtotime($value['inicio'])) ?> até <?php  echo date('d/m/Y',strtotime($value['final'])) ?></strong></p>
 							</div>
 							<div class="right col-sm-4 col-md-4">
 								<p><span class="icon_vaga"></span>
@@ -91,26 +91,26 @@
 							</div>
 						</article>
 
-					<? endforeach ?>
+					<?php  endforeach ?>
 
 				</section>
 
 				<section class="content_contas">
-					<?
+					<?php 
 						if($info_curso->disponiveis < $vagas) {
 					?>
 					<div>
-						<? 
+						<?php  
 							$wp_session = WP_Session::get_instance();
 							if($wp_session['UserLogin'] != '' || $wp_session['UserLogin'] != null) { ?>
 								<div class="libera-continuar" style="display:none">
 									<span class="btn_form btn_login" id="js-pagamento--libera">Continuar compra</span>
 								</div>
-								<form id="formCadastroAluno" class="formSingup formCad" method="POST" data-cadastrado="sucesso" data-usuario="<? echo $wp_session['UserLogin']; ?>">
+								<form id="formCadastroAluno" class="formSingup formCad" method="POST" data-cadastrado="sucesso" data-usuario="<?php  echo $wp_session['UserLogin']; ?>">
 									<input type="hidden" value="" class="js-codigo">
 									<input type="hidden" value="" class="js-info">
-									<input type="hidden" value="<? echo $info_curso->id ?>" class="js-produto">
-									<input type="hidden" value="<? echo $info_curso->titulo ?>" class="js-desc_produto">
+									<input type="hidden" value="<?php  echo $info_curso->id ?>" class="js-produto">
+									<input type="hidden" value="<?php  echo $info_curso->titulo ?>" class="js-desc_produto">
 					                <input type="hidden" class="js-nome">
 					                <input type="hidden" class="js-email">
 					                <input type="hidden" class="js-telefone">
@@ -124,12 +124,12 @@
 					                <input type="hidden" class="js-complemento">
 									<h4><b>Você já está conectado</b> <br> <small>Escolha a forma de pagamento</small></h4>
 
-									<!-- : <? echo $wp_session['UserName']; ?>  -->
+									<!-- : <?php  echo $wp_session['UserName']; ?>  -->
 
 								</form>
 								<div class="msg-conta">Você já possui uma compra deste curso.</div>
 
-							<? } else { ?>
+							<?php  } else { ?>
 							<div class="libera-compra">
 								<span class="btn_form btn_login" id="js-pagamento--libera">Fazer novo cadastro</span>
 								<span class="btn_form btn_login" id="tenho-cadastro" data-toggle="modal" data-target="#myModal">Já tenho cadastro</span>	
@@ -139,8 +139,8 @@
 							<form id="formCadastroAluno" class="formSingup formCad" method="POST">
 								<input type="hidden" value="" class="js-codigo">
 								<input type="hidden" value="" class="js-info">
-								<input type="hidden" value="<? echo $info_curso->id ?>" class="js-produto">
-								<input type="hidden" value="<? echo $info_curso->titulo ?>" class="js-desc_produto">
+								<input type="hidden" value="<?php  echo $info_curso->id ?>" class="js-produto">
+								<input type="hidden" value="<?php  echo $info_curso->titulo ?>" class="js-desc_produto">
 								<p>Para concluir a inscrição, preencha com seus dados</p>
 								<div class="row">
 									<div class="col-sm-6 col-md-7">
@@ -195,10 +195,10 @@
 								</div> 
 							</form>	
 							
-						<? } ?>
+						<?php  } ?>
 						
 						<form class="formSingup cupom-desconto">
-							<input type="hidden" value="<?  echo $info_curso->id; ?>" id="js-curso-codigo">
+							<input type="hidden" value="<?php   echo $info_curso->id; ?>" id="js-curso-codigo">
 							<div class="content_wrap row">							
 								<div class="col-xs-12 col-md-3">
 									<p><b>Cupom de desconto</b></p>
@@ -216,11 +216,11 @@
 						<form class="formSingup payment_card">
 							<div class="content_wrap row">
 								<p class="texto-preto">Formas de pagamento</p>
-								<img src="<? bloginfo('template_url') ?>/images/formas-pagamento.png" class="img-responsive forma-pagamento">
+								<img src="<?php  bloginfo('template_url') ?>/images/formas-pagamento.png" class="img-responsive forma-pagamento">
 							</div>
 
 							<div class="content_wrap row" id="op_pgto">
-								<p class="texto-preto js-mostra" data-mostra=".pagamento_credito"><img src="<? bloginfo('template_url') ?>/images/icon_credito.png" class=""> <b>Cartão de Crédito</b> <small>(R$ <span class="price"><? echo $price ?></span> em até <? echo $cartao; ?> vezes sem juros)</small></p>
+								<p class="texto-preto js-mostra" data-mostra=".pagamento_credito"><img src="<?php  bloginfo('template_url') ?>/images/icon_credito.png" class=""> <b>Cartão de Crédito</b> <small>(R$ <span class="price"><?php  echo $price ?></span> em até <?php  echo $cartao; ?> vezes sem juros)</small></p>
 								<div class="pagamento_credito">
 									<div class="col-sm-12 col-md-12">
 					  					<img class="bandeira" id="bandeira">
@@ -243,7 +243,7 @@
 									<div class="col-sm-6 col-md-4">
 										<select name="parcelas" id="parcelas">
 											<option value="" dafault>Parcelas</option>
-											<? 
+											<?php  
 												if($cartao != null) {
 													for ($i=1; $i <= $cartao; $i++) { 
 														$valor_parcela = $price/$i;
@@ -263,9 +263,9 @@
 									<input type="hidden" name="creditCardToken" id="creditCardToken"  />
 					      			<input type="hidden" name="creditCardBrand" id="creditCardBrand" />
 					      			<div class="product-all-track">
-					      				<aside class="track-0" data-track="<? echo base64_encode($price) ?>"></aside>
+					      				<aside class="track-0" data-track="<?php  echo base64_encode($price) ?>"></aside>
 					      			</div>
-					      			<input type="hidden" id="js--sigla-curso" value="<? echo $info_curso->sigla ?>">
+					      			<input type="hidden" id="js--sigla-curso" value="<?php  echo $info_curso->sigla ?>">
 					      			<div class="row">
 						      			<div class="col-md-12">
 									  		<button type="submit" class="btn btn-volta text-center text-uppercase center-block" onclick="fecharPedido(PagSeguroDirectPayment.getSenderHash())">Finalizar</button>
@@ -277,7 +277,7 @@
 
 						<form class="formSingup payment_boleto">
 							<div class="content_wrap row" id="op_pgto">
-								<p class="texto-preto js-mostra" data-mostra=".pagamento_boleto"><img src="<? bloginfo('template_url') ?>/images/icon_boleto.png" class=""> <b>Boleto Bancário</b> <small>(R$ <span class="price"><? echo $price ?></span> à vista)</small></p>
+								<p class="texto-preto js-mostra" data-mostra=".pagamento_boleto"><img src="<?php  bloginfo('template_url') ?>/images/icon_boleto.png" class=""> <b>Boleto Bancário</b> <small>(R$ <span class="price"><?php  echo $price ?></span> à vista)</small></p>
 								<div class="pagamento_boleto">
 									<div class="col-sm-12 col-md-12">
 										<button type="submit" class="btn btn-volta text-center text-uppercase center-block" onclick="pagarBoleto(PagSeguroDirectPayment.getSenderHash());">Gerar Boleto</button>
@@ -286,33 +286,33 @@
 							</div>
 						</form>
 					</div>
-					<? } else { 
+					<?php  } else { 
 					 	echo "Infelizmente não há mais vagas disponíveis para este curso.";
 					} ?>	
 				</section>
 				<section class="situacao-cadastro text-center">
 					<h3 id="js-situacao_titulo"><strong>Inscrição concluída</strong></h3>
 					<p class="situacao-cadastro_icon">
-						<img src="<? bloginfo('template_url') ?>/images/icon_sucesso.png" class="img-responsive" id="js-situacao_imagem" width="100px">
+						<img src="<?php  bloginfo('template_url') ?>/images/icon_sucesso.png" class="img-responsive" id="js-situacao_imagem" width="100px">
 					</p>
 					<p class="lead" id="js-situacao_descricao">
 						Você receberá os dados de confirmação por e-mail, <br> aguarde a aprovação do pagamento.
 					</p>
-					<p><a href="<? bloginfo('url') ?>/cursos-e-consultoria/" class="btn btn-volta text-center text-uppercase center-block">Voltar</a></p> 
+					<p><a href="<?php  bloginfo('url') ?>/cursos-e-consultoria/" class="btn btn-volta text-center text-uppercase center-block">Voltar</a></p> 
 				</section>
 
 			</div>
 			<div class="col-md-2 col-lg-3 hidden-xs hidden-sm">
-				<? include("sidebar-courses.php") ?>
+				<?php  include("sidebar-courses.php") ?>
 			</div>
 		</div>
 	</section>
 
-<? endif ?>
+<?php  endif ?>
 	
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="<? bloginfo('template_url') ?>/js/jquery.base64.js"></script>
+	<script src="<?php  bloginfo('template_url') ?>/js/jquery.base64.js"></script>
 	<!-- <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script> -->
 	
 	<script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
@@ -332,4 +332,4 @@
 	</script>
 
 
-<? get_footer() ?>
+<?php  get_footer() ?>

@@ -149,7 +149,7 @@
 												<p class="data_lote">
 													Até <?php echo date('d/m/Y',strtotime($value['final'])) ?>
 												</p>
-												<a href="<?php bloginfo('url'); ?>/pagamento/<?php echo $info_curso->tag; ?>/">
+												<a href="<?php bloginfo('url'); ?>/<?php echo $info_curso->tag; ?>/">
 													<span class="btn-inscricao">INSCREVA-SE</span>
 												</a>
 											</div>
