@@ -1,6 +1,6 @@
-<? /* Template Name: Logout */ ?>
+<?php /* Template Name: Logout */ ?>
 
-<?
+<?php
 	wp_destroy_all_sessions();
 	$wp_session = WP_Session::get_instance();
 
@@ -14,7 +14,9 @@
 
         var_dump($wp_session);
 
-        header("Location: http://lisieuxtreinamento.com.br/");
+        header("Location: http://localhost/wordpress/");
+    }else{
+        echo 'hie';
     }
 
 ?>

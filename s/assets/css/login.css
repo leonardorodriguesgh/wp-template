@@ -1,0 +1,125 @@
+* { 
+  padding: 0; 
+  margin: 0 auto;
+} 
+@font-face {
+  font-family: 'MyriadPro-Light';
+
+  src: url('../fonts/MyriadPro-Light.eot');
+  src:  url('../fonts/MyriadPro-Light.eot?#iefix') format('embedded-opentype'),  url('../fonts/MyriadPro-Light.otf') format('opentype'),  url('../fonts/MyriadPro-Light.woff') format('woff'), url('../fonts/MyriadPro-Light.ttf')  format('truetype'), url('../fonts/MyriadPro-Light.svg#MyriadPro-Light') format('svg');
+} 
+
+body {
+  color: black; 
+  font-size: 16px; 
+  background: #f1f5f9;
+  font-family: 'MyriadPro-Light';
+}
+/*LOGIN*/
+#request-field{	
+	position: static;
+	max-height: 5vh;
+	right: 0;
+	left: 0;
+	
+}
+#login{
+	padding-bottom: 30px;
+}
+#email-error, #senha-error{
+	color: #dc3545;
+}
+#login [role="button"]{
+	height: 5vh;
+	display: block
+}
+#login .btn-success{
+	padding: 15px 36%;
+	margin: 0px;
+	border-radius: 0px;	
+	display: inline-block;
+	background-color: #339966;
+	margin-top: 20px;
+	font-size: 16px;
+}
+[role = "alert"]{
+	display: none;
+}
+
+/*#login .lead input::placeholder{
+	opacity: 0.6;
+}*/
+/*/LOGIN*/
+.white{
+	background-color: #fff;	
+	min-height: 40vh;
+	max-width:400px;
+	position:absolute !important;
+	top: 29%;
+	left: 0;
+	right: 0;
+}
+.form-control{
+	left: 0 !important;
+	right: 0 !important;
+	border-right: 0px;
+	border-top: 0px;
+	border-left: 0px;
+	border-bottom: 1px solid #000;
+	box-shadow: none;
+	padding: 0px;
+}
+.input-group{
+	width: 85%;
+	margin-bottom: 20px;
+}
+.toolbar{
+	background: rgba(51, 153, 103, 0.3);
+	margin-bottom: 10%; 
+	padding: 15px 0px;
+}
+.toolbar img{
+	opacity: 1 !important;
+}
+/*.form-control::placeholder{
+	color: #333;	
+}*/
+#recuperar_senha{
+	bottom: -30px !important;
+	position: absolute;
+}
+#myModal{
+	top: 30%;
+}
+.modal-backdrop.fade.in{
+	opacity: .2;
+}
+.modal-header{
+	background-color: #339966;
+	color: #fff;
+}
+.btn-success{
+	background-color: #339966;
+}
+#modal_close{
+	padding: 9px 14px;
+	border-radius: 100% !important;
+	color: #fff;
+	background-color: #339966;
+	opacity: 1;
+	position: absolute;
+	top: -12px;
+	right: -12px;
+}
+.modal-footer{
+	margin-top: 50px;
+}
+.modal-body{
+	padding-top: 50px;
+}
+.modal-content{	
+	border: 0px !important;
+}
+.close[type="button"]:hover{
+	opacity: .4;
+}

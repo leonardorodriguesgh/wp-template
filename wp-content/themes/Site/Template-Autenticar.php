@@ -102,7 +102,7 @@ if($wp_session['UserID'] == null):
 	}
 else :
 	$wp_session = WP_Session::get_instance();
-	header("Location: http://lisieuxtreinamento.com.br/");
+	header("Location: localhost/wordpress);
 
 endif;
 

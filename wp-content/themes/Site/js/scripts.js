@@ -422,7 +422,7 @@ $(document).ready(function() {
                         var pagina = $("input[name=telaInicial]").val();
                         console.log(data.return);
                         // $.redirect("http://cursos.lisieuxtreinamento.com.br/authentic/", {
-                        $.redirect("localhost/wordpress/autenticar/", {
+                        $.redirect("/wordpress/home/autenticar/", {
                             email: username,
                             tipo: data.type,
                             tela:pagina,
