@@ -189,7 +189,7 @@ class My_functions {
 
 	function enviar_imagem( $sistema, $caminho, $arquivo, $largura, $altura) {
 
-		include('Canvas.php');	
+		require('Canvas.php');	
 
 		$config['upload_path']   = $_SERVER['DOCUMENT_ROOT'].$sistema.$caminho;
 		$config['allowed_types'] = '*';	
@@ -227,6 +227,41 @@ class My_functions {
 	
 				$img = null;    				
 			}
+			$res = array('url' => $caminho.'/'.$upload_data['file_name'] , 'image' => substr($upload_data['file_name'] , 0, -4) );
+		}
+
+		return $res;
+
+	}
+
+	function enviar_imagem_original( $sistema, $caminho, $arquivo) {
+
+
+		$config['upload_path']   = $_SERVER['DOCUMENT_ROOT'].$sistema.$caminho;
+		$config['allowed_types'] = '*';	
+		$config['encrypt_name']  = TRUE;
+
+		$CI =& get_instance();
+		$CI->load->library('upload', $config);
+
+		$res = array();
+
+		$_FILES['userfile']['name']     = $arquivo['file']['name']; 
+	    $_FILES['userfile']['type']     = $arquivo['file']['type'];
+	    $_FILES['userfile']['tmp_name'] = $arquivo['file']['tmp_name'];
+	    $_FILES['userfile']['error']    = $arquivo['file']['error'];
+	    $_FILES['userfile']['size']     = $arquivo['file']['size'];   
+
+		if ( ! $CI->upload->do_upload() )
+		{
+		    $res[] = $CI->upload->display_errors('', '');
+			//$res = array();
+		}
+		else
+		{
+		
+			$upload_data = $CI->upload->data(); 
+
 			$res = array('url' => $caminho.'/'.$upload_data['file_name'] , 'image' => substr($upload_data['file_name'] , 0, -4) );
 		}
 

@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Curso_model extends CI_Model {
 
-  private $_inserirCurso = "CALL p_I_CadastrarCurso(?,?,?,?,?,?,?,?)";
+  private $_inserirCurso = "CALL p_I_CadastrarCurso(?,?,?,?,?,?,?,?,?)";
   private $_editarCurso = "CALL p_U_EditarCurso(?,?,?,?,?,?,?,?,?)";
   private $_SelecionarCurso = "CALL p_S_Curso(?)";  
   private $_SelecionarBanner = "CALL p_S_Banner(?)";
@@ -31,9 +31,12 @@ class Curso_model extends CI_Model {
   | 
   |
   */
-  public function adicionar($nome, $tipo, $sigla, $situacao, $ds_curso){
+  public function adicionar($tag_curso, $nome, $tipo, $sigla, $situacao, $ds_curso){
+    
+    
     $data = array(
       //'id_curso' => 1,
+      'tag_curso' => $tag_curso,
       'nm_curso' => $nome,
       'tipo' => $tipo,
       'sigla_curso' => $sigla,

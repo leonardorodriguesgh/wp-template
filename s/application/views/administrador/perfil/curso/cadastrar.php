@@ -84,7 +84,7 @@
 			<div class="upload-btn row">
 				
 				<label class="col-xs-6" for="desktop" id="deskLabel" ><input class="btn" type="file" name="desktop" id="desktop"/>DESKTOP</label>
-				<label class="col-xs-6" for="mobile" id="mobLabel"><input class="btn" type="file" name="desktop" id="mobile"/>MOBILE</label>
+				<label class="col-xs-6" for="mobile" id="mobLabel"><input class="btn" type="file" name="mobile" id="mobile"/>MOBILE</label>
 				
 			</div>
 			

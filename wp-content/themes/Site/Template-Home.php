@@ -1,10 +1,11 @@
 <?php  /* Template Name: Home */ ?>
 
-<?php get_header(); ?>
+<?php get_header();?>
 
 <?php global $course_id; ?>
 
-<?php include('carousel.php') ?>
+<?php include('carousel.php');
+var_dump($turma);?>
 
 <section class="section" id="section1"> 
 	<div class="container">
@@ -58,7 +59,7 @@
 		<div class="call_current_course col-md-12">
 			<div class="row_flex">
 				<div class="col-sm-12 col-md-6 col-md-push-6">
-					<article class="cover_current" style="background: url(<?php echo $curso->imgchamada; ?>)">
+					<article class="cover_current" style="background: url('s/<?php echo $curso->imgchamada; ?>')">
 						<picture>
 							<source media="(max-width: 991px)" srcset="<?php echo $curso->image; ?>">
 							<img class="img-responsive" src="">
@@ -71,11 +72,11 @@
 						<p class="content"><?php echo string_limit_words($curso->txtchamada, 108); ?></p>
 						<p class="info">
 							<img class="img-responsive" src="<?php bloginfo('template_url'); ?>/images/icon_aulas.png">
-							<?php echo $curso->aulas; ?> aula<?php if( $curso->aulas > 1 ) echo "s" ?>
+							<?php echo $curso->aulas; ?> aula<?php if( $turma->qtd_aulas > 1 ) echo "s" ?>
 						</p>
 						<p class="info">
 							<img class="img-responsive" src="<?php bloginfo('template_url'); ?>/images/icon_horas.png">
-							<?php echo $curso->horas; ?>h
+							<?php echo $turma->qtd_horas;?>h
 						</p>
 						<div class="clear"></div>
 						<a href="cursos-e-consultoria/<?php echo $curso->tag; ?>">

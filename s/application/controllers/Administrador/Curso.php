@@ -77,8 +77,10 @@ class Curso extends CI_Controller {
 			$situacao=$this->input->post('situacao');
 			$ds_curso=$this->input->post('ds_curso');
 			
-			
-			if($this->Curso_model->adicionar($nome, $tipo, $sigla, $situacao, $ds_curso))
+			$nm_tag_curso = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"),$nome);
+			$tag = str_replace(" ", "-", $nm_tag_curso);
+			$tag_curso = strtolower($tag);
+			if($this->Curso_model->adicionar($tag_curso, $nome, $tipo, $sigla, $situacao, $ds_curso))
 			{
 				$data['message'] = "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button><h4 class='alert alert-success alert-dismissible fade in' role='alert'>curso cadastrado :)</h4>";
 			}else{			
@@ -296,19 +298,27 @@ class Curso extends CI_Controller {
 		var_dump($data['cursoDados']);
 		var_dump($data['bannerDados']);*/
 
-		if($data['cursoDados'][0]['codigo']){
-			$arquivo['file'] = $_FILES['desktop'];
-			$caminho = $this->my_functions->enviar_imagem( '/lisieuxtreinamentos/sistema', '/assets/images/sistema/banner-curso', $arquivo, 500 , 200 );
-			$data['callback'] = $this->Curso_model->adicionaBannerCurso($id_curso, $caminho['url']);
-			$data['message'] = "<h4 class='alert alert-success'>Banner cadastrado!!</h4>";
+		if($data['cursoDados']['codigo']){
 			
+			$desktop['file'] = $_FILES['desktop'];
+			$caminho1 = $this->my_functions->enviar_imagem_original( '/wordpress/s', '/assets/images/sistema/banner-curso', $desktop);
+			print_r($caminho1);
+			$data['callback'] = $this->Curso_model->adicionaBannerCurso($id_curso, $caminho1['url']);
+			$data['message'] = "<h4 class='alert alert-success'>Banner cadastrado!!</h4>";
+		
+			$mobile['file'] = $_FILES['desktop'];
+			$caminho2 = $this->my_functions->enviar_imagem_original( '/wordpress/s', '/assets/images/sistema/banner-curso', $mobile);
+			print_r($caminho2);
+			$data['callback'] = $this->Curso_model->adicionaBannerCurso($id_curso, $caminho2['url']);
+			$data['message'] = "<h4 class='alert alert-success'>Banner cadastrado!!</h4>";
+	
 		}else{
 			echo "Para proceder cadastre mais um curso";
 		}
 
 
 
-		$this->load->view('administrador/perfil/curso/detalhes', $data);   
+		$this->load->view('administrador/perfil/curso/editar', $data);   
 	    $this->load->view('administrador/templates/footer'); 
 		
     	
