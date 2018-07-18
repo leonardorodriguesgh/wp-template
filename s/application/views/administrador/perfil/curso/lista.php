@@ -114,7 +114,7 @@
   			timer = setTimeout(doneTyping, doneTypingInterval);
   		}
       	$.ajax({            
-            url: "<?php echo base_url('Administrador/Curso/listar_cursos_index'); ?>",
+            url: "<?php echo base_url('Administrador/Curso/index'); ?>",
             type: 'post',
             data: '',
             success: function () {
