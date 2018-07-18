@@ -15,9 +15,9 @@
 	"
 	SELECT 
 		tb_curso.codigo, tb_curso.tag_curso, tb_curso.nm_curso, tb_curso.ds_curso, 
-			(select url_banner from tb_banner_curso where id_curso = tb_curso.codigo order by id_banner desc LIMIT 1 ) as image
+			(select url_banner from tb_banner_curso where id_curso = tb_curso.codigo order by id_banner asc LIMIT 1 ) as image
 	FROM 
-		tb_curso order by tb_curso.codigo desc LIMIT 1
+		tb_curso order by tb_curso.codigo asc LIMIT 1
 	";
 
 	$query = mysqli_query($link, $sql);
@@ -47,8 +47,8 @@
 	FROM 
 		tb_turma
 	WHERE
-		id_curso = (select codigo FROM tb_curso Order By codigo desc limit 1) 
-		order by id_curso desc LIMIT 1
+		id_curso = (select codigo FROM tb_curso Order By codigo asc limit 1) 
+		order by id_curso asc LIMIT 1
 	";
 
 	$qry = mysqli_query($link, $sql_turma);
