@@ -24,16 +24,18 @@ INNER JOIN item_dia_semana_curso as ID ON ID.cd_curso = C.cd_curso
 INNER JOIN ci_dia_semana as D ON ID.cd_dia_semana = D.cd_dia_semana
 ";
 
-$sql .= ( isset($wp_query->query_vars['name']) ) ? " WHERE C.tag_curso = '".$wp_query->query_vars['name']."'" : " ";
+$sql .= ( isset($wp_query->query_vars['curso']) ) ? " WHERE C.tag_curso = '".$wp_query->query_vars['curso']."'" : " ";
 
 
 $query = mysqli_query($link, $sql);
+
 
 while($row = mysqli_fetch_assoc($query)){
 	$id_curso = $row['cd_curso'];
 	$queryVagas = "SELECT T.qt_vaga_disponivel - count(I.cd_turma_curso)  as Disponiveis  FROM `ci_turma_curso` as T
 	INNER JOIN ci_inscricao_curso_aluno as I ON T.cd_turma_curso = I.cd_turma_curso
 	WHERE T.cd_curso = ".$id_curso;
+	
 
 	$queryVagasDisponiveis = mysqli_query($link, $queryVagas);
 
@@ -41,7 +43,7 @@ while($row = mysqli_fetch_assoc($query)){
 		$vagasDisponiveis = $vagas['Disponiveis'];
 	}
 
-	if (isset($wp_query->query_vars['name'])){
+	if (isset($wp_query->query_vars['curso'])){
 		$info_curso = (object) array(
 			'id' 			=> $row['cd_curso'],
 			'dia_semana'	=> $row['nm_dia_semana'],
@@ -66,6 +68,8 @@ while($row = mysqli_fetch_assoc($query)){
 			'final_turma'	=> date("d/m/Y", strtotime($row['dt_final_turma'])),
 			'sigla'			=> $row['nm_sigla']
 		);
+
+		var_dump($row);
 	}else{
 
 		$LoteSql = "

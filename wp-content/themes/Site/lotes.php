@@ -5,7 +5,7 @@ mysqli_set_charset($link,"utf8");
 
 $lotes = array();
 
-$sql = "SELECT vl_lote_curso, dt_inicio_lote, dt_termino_lote FROM ci_lote L INNER JOIN ci_curso C ON L.cd_curso = C.cd_curso WHERE L.cd_curso = ".$course_id."";
+$sql = "SELECT vl_lote, dt_inicio, dt_termino FROM tb_lote L INNER JOIN tb_curso C ON L.id_turma = C.codigo WHERE L.id_turma = ".$course_id."";
 
 $res = mysqli_query($link, $sql );
 
@@ -21,8 +21,8 @@ $currentDate = strtotime(date ("Y-m-d"));
 
 while ( $row = mysqli_fetch_assoc( $res ) ) {
 	
-	$initialDateSql = strtotime($row['dt_inicio_lote']);
-	$finalDateSql = strtotime($row['dt_termino_lote']);
+	$initialDateSql = strtotime($row['dt_inicio']);
+	$finalDateSql = strtotime($row['dt_termino']);
 
 	if($finalDateSql < $currentDate){
 		$situacao = -1;
@@ -35,9 +35,9 @@ while ( $row = mysqli_fetch_assoc( $res ) ) {
 	$lotes[] = array(
 		'lote'		=> $cont,
 		'nomeLote' 	=> $nome_lote[$cont],
-		'inicial'	=> $row['dt_inicio_lote'],
-		'final'		=> $row['dt_termino_lote'],
-		'valor'		=> $row['vl_lote_curso'],
+		'inicial'	=> $row['dt_inicio'],
+		'final'		=> $row['dt_termino'],
+		'valor'		=> $row['vl_lote'],
 		'situacao'	=> $situacao
 	);
 

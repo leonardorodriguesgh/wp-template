@@ -97,13 +97,12 @@
 			<h2>PRÓXIMOS<strong> CURSOS</strong></h2>
 			<span></span>
 		</div>
-
 		<?php foreach ($nextCourses as $value) { ?>
 			<a href="<?php bloginfo('url'); ?>/cursos-e-consultoria/<?php echo $value['tag'] ?>/">
 				<div class="col-sm-4 col-md-3">
 					<article class="list_next">
 						<div class="thumbnail">
-							<img class="img-responsive" src="<?php echo $value['image'] ?>">
+							<img class="img-responsive" src="/wordpress/s<?php echo $value['image'] ?>">
 							<span class="value">
 								<?php if( strtotime($value['data_final']) > strtotime($value['data_inicio'])) :?>
 									<?php 	echo  date("d/m/Y", strtotime($value['data_inicio'])); ?> 
@@ -115,12 +114,12 @@
 						</div>
 						<div class="content">
 							<h4 class="title"><?php echo $value['titulo']; ?> 
-								<?php if($value['cidade'] == '') {
+								<?php/* if($value['cidade'] == '') {
 									 	
 									} else {
 										echo "- ".$value['cidade'];
 									}
-								?> 
+								*/?>
 							</h4>
 							<p class="description">
 								<?php echo string_limit_words($value['descricao'], 20); ?>

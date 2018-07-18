@@ -4,17 +4,20 @@ $link = mysqli_connect("localhost", "root", "", "lisieux_treinamento");
 mysqli_set_charset($link,"utf8");
 
 $query = mysqli_query($link, "
-	SELECT  cd_curso,nm_titulo_curso, ds_chamada_curso, qt_numero_aulas, 
-	qt_total_horas, nm_url_thumbnail_curso, tag_curso
-	FROM ci_curso
-	WHERE cd_situacao_curso = 3 ORDER BY dt_inicio_curso ASC LIMIT 4
+SELECT 
+	tb_curso.codigo, tb_curso.tag_curso, tb_curso.nm_curso, tb_curso.ds_curso, 
+	(select url_banner from tb_banner_curso where id_curso = tb_curso.codigo order by id_banner asc LIMIT 1 ) as image
+FROM 
+	tb_curso 
+order by 
+	tb_curso.codigo asc LIMIT 4
 ");
 
 $nextCourses = array();
 
 while ($row = mysqli_fetch_assoc($query)) {
 	
-	$id = (int) $row['cd_curso'];
+	$id = (int) $row['codigo'];
 
 	// $query_lotes = mysql_query("
 	// 	SELECT MIN(L.vl_lote_curso) AS valor, T.dt_inicio_turma AS data
@@ -24,26 +27,30 @@ while ($row = mysqli_fetch_assoc($query)) {
 	// 	WHERE L.cd_curso = $id
 	// ");
 
+	// SELECT T.dt_inicio_turma AS data_inicio, T.dt_final_turma AS data_final, A.nm_cidade AS cidade
+	// 	FROM ci_turma_curso T
+	// 	INNER JOIN ci_curso C ON T.cd_curso = C.cd_curso 
+	// 	INNER JOIN ci_turma_curso_local A ON T.cd_turma_curso_local = A.cd_turma_curso_local
+	// 	WHERE C.cd_curso = $id
+
 	$query_turmas = mysqli_query($link,"
 
-		SELECT T.dt_inicio_turma AS data_inicio, T.dt_final_turma AS data_final, A.nm_cidade AS cidade
-		FROM ci_turma_curso T
-		INNER JOIN ci_curso C ON T.cd_curso = C.cd_curso 
-		INNER JOIN ci_turma_curso_local A ON T.cd_turma_curso_local = A.cd_turma_curso_local
-		WHERE C.cd_curso = $id
+		SELECT T.dt_inicio AS data_inicio, T.dt_termino AS data_final, qtd_aulas, qtd_horas
+		FROM tb_turma T
+		INNER JOIN tb_curso C ON T.id_curso = C.codigo
+		ORDER BY C.codigo asc LIMIT 1
 	");
-
 	while($turma = mysqli_fetch_assoc($query_turmas)){
 		$nextCourses[] = array(
-			'titulo' 	=> $row['nm_titulo_curso'],
-			'descricao' => $row['ds_chamada_curso'],
-			'aulas' 	=> $row['qt_numero_aulas'],
-			'horas' 	=> $row['qt_total_horas'],
-			'image' 	=> $row['nm_url_thumbnail_curso'],
+			'titulo' 	=> $row['nm_curso'],
+			'descricao' => $row['ds_curso'],
+			'aulas' 	=> $turma['qtd_aulas'],
+			'horas' 	=> $turma['qtd_horas'],
+			'image' 	=> $row['image'],
 			'tag'       => $row['tag_curso'],
 			'data_inicio'  => $turma['data_inicio'],
-			'data_final'  => $turma['data_final'],
-			'cidade'    => $turma['cidade'],
+			'data_final'  => $turma['data_final']/*,
+			'cidade'    => $turma['cidade'],*/
 		);
 	}
 

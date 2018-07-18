@@ -13,6 +13,7 @@
 	<section class="content_course_intern">
 		<div class="container">
 			<div class="col-sm-12 col-md-10 col-lg-9">
+
 				<?php  foreach ($info_cursos as $value) : ?>
 
 					<article class="box_curso">

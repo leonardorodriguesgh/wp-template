@@ -60,7 +60,7 @@
 			
 		);
 	}
-	$turma_id = $turma->id;
+	//$turma_id = $turma->id;
 ?>
 
 
