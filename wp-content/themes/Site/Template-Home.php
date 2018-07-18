@@ -72,11 +72,11 @@ var_dump($turma);?>
 						<p class="content"><?php echo string_limit_words($curso->txtchamada, 108); ?></p>
 						<p class="info">
 							<img class="img-responsive" src="<?php bloginfo('template_url'); ?>/images/icon_aulas.png">
-							<?php echo $curso->aulas; ?> aula<?php if( $turma->qtd_aulas > 1 ) echo "s" ?>
+							<?php echo $turma->aulas; ?> aula<?php if( $turma->aulas > 1 ) echo "s" ?>
 						</p>
 						<p class="info">
 							<img class="img-responsive" src="<?php bloginfo('template_url'); ?>/images/icon_horas.png">
-							<?php echo $turma->qtd_horas;?>h
+							<?php echo $turma->horas;?>h
 						</p>
 						<div class="clear"></div>
 						<a href="cursos-e-consultoria/<?php echo $curso->tag; ?>">
