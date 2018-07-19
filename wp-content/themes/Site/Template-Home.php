@@ -58,7 +58,7 @@
 		<div class="call_current_course col-md-12">
 			<div class="row_flex">
 				<div class="col-sm-12 col-md-6 col-md-push-6">
-					<article class="cover_current" style="background: url('s/<?php echo $curso->imgchamada; ?>')">
+					<article class="cover_current" style="background: url('s/<?php echo $curso->imgchamada;?>'); background-size: cover; height: 100%;">
 						<picture>
 							<source media="(max-width: 991px)" srcset="<?php echo $curso->image; ?>">
 							<img class="img-responsive" src="">
@@ -122,7 +122,7 @@
 								*/?>
 							</h4>
 							<p class="description">
-								<?php echo string_limit_words($value['descricao'], 20); ?>
+								<?php echo string_limit_words($value['descricao'], 18); ?>
 							</p>
 						</div>
 						<div class="info">

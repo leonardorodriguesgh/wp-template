@@ -8,7 +8,31 @@
 </div>
 
 <?php include('single-course.php'); ?>
-
+<?php 	$info_curso = (object) array(
+			'id' 			=> $row['codigo'],
+			/*'dia_semana'	=> $row['nm_dia_semana'],
+			'hr_inicio'		=> $row['hr_inicio'],
+			'hr_termino'	=> $row['hr_termino'],*/
+			'dt_inicio'		=> date("d/m/Y", strtotime($row['dt_inicio'])),
+			'dt_termino'	=> date("d/m/Y", strtotime($row['dt_termino'])),
+			'tipo'			=> $row['tipo'],
+			'vagas'			=> $row['qtd_vagas'],
+			'disponiveis'	=> $vagasDisponiveis,
+			'image' 		=> $row['url_banner'],
+			//'image_mob'		=> $row['nm_url_capa_mobile_curso'],
+			'titulo'		=> $row['nm_curso'],
+			'chamada' 		=> ($row['ds_curso'] == "") ? $row['nm_curso'] : $row['ds_curso'],
+			//'descricao' 	=> $row['ds_informacao_curso'],
+			'aulas' 		=> $row['qtd_aulas'],
+			'horas' 		=> $row['qtd_horas'],
+			'tag' 			=> $row['tag_curso'],
+			//'link'			=> $row['nm_url_landing_page'],
+			//'pdf'			=> $row['nm_url_pdf'],
+			// 'init_turma'	=> date("d/m/Y", strtotime($row['dt_inicio'])),
+			// 'final_turma'	=> date("d/m/Y", strtotime($row['dt_termino'])),
+			'sigla'			=> $row['sigla_curso']
+		);
+ ?>
 <?php if (isset($info_curso)) : ?>
 	
 	<section class="content_course_intern">
@@ -19,22 +43,22 @@
 					<div class="align-center">
 						<div class="data_curso">
 							<img class="img-responsive" src="<?php bloginfo('template_url') ?>/images/icon_dia.png">
-							<p>
-								<?php echo $info_curso->dia_semana ?>, <?php echo substr($info_curso->hr_inicio,0, 2) ?>h às 
-								<?php echo substr($info_curso->hr_termino,0, 2) ?>h
-								<br>
+							<p style="padding-top:12px">
+								<!--<?php// echo $info_curso->dia_semana ?>, <?php// echo substr($info_curso->hr_inicio,0, 2) ?>h às 
+								<?php// echo substr($info_curso->hr_termino,0, 2) ?>h
+								<br>-->
 								<strong>
 
 									<?php 
-										if($info_curso->init_turma == '30/11/-0001') {
+										if($info_curso->dt_inicio == '30/11/-0001') {
 											$inicial = "Data a definir";
 										} else {
-											$inicial = $info_curso->init_turma;
+											$inicial = $info_curso->dt_inicio;
 										}
-										if($info_curso->final_turma == '30/11/-0001') {
+										if($info_curso->dt_termino == '30/11/-0001') {
 											$final = "Data a definir";
 										} else {
-											$final = $info_curso->final_turma;
+											$final = $info_curso->dt_termino;
 										}
 
 										if($inicial != $final ) 
@@ -59,16 +83,16 @@
 
 				<div class="apresentacao_curso">
 					<picture>
-						<source media="(min-width: 768px)" srcset="<?php echo $info_curso->image ?>">
-						<img class="img-responsive" src="<?php echo $info_curso->image_mob ?>">
+						<source media="(min-width: 768px)"id="testador"  srcset="<?php bloginfo('url')?>/s<?php echo $info_curso->image ?>">
+						<img class="img-responsive" src="<?php echo $info_curso->image_mob ?>" style="width:100%">
 					</picture>
 					<h3 class="ttl_curso"><?php echo $info_curso->titulo ?></h3>
-					<p class="txt_curso"><?php echo $info_curso->chamada ?></p>
+					
 				</div>
 
 				<div class="descricao_curso">
-					<h4>DESCRIÇÃO CURSO</h4>
-					<p><?php echo $info_curso->descricao ?></p>
+					<h4>DESCRIÇÃO</h4>
+					<p class="txt_curso"><?php echo $info_curso->chamada ?></p>
 					<?php 
 						if($info_curso->pdf != null){
 							echo '<p>Clique aqui e conheça os detalhes do curso: <a href="'.$info_curso->pdf.'" target="_blank" class="text-success"><u>Ver mais sobre o curso</u></a></p>';

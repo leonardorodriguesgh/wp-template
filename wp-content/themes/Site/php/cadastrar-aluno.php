@@ -40,7 +40,7 @@ if($_POST) :
 				
 				try{
 
-					$insert = $conn->prepare("INSERT INTO  ci_aluno (nm_aluno, nm_email, cd_telefone, dt_nascimento, dt_registro, nm_genero, cd_senha_usuario, cd_cpf, cd_cep, nm_cidade, nm_estado, nm_endereco) VALUES (:nome, :email, :telefone, :data, :dataR, :genero, :senha, :cpf, :cep, :cidade, :estado, :endereco)");
+					$insert = $conn->prepare("INSERT INTO  ci_aluno (nm_aluno, nm_email, cd_telefone, dt_nascimento, dt_registro, nm_genero, cd_senha_usuario, cd_cpf, cd_cep, nm_cidade, nm_estado, nm_endereco) VALUES (:nome, :email, :telefone, :data, :dataR, :genero, :senha, :cpf, :cep, :cidade, :estado, :endereco)");//insert aluno / usuario
 					$insert->bindValue(":nome", $form->nome);
 					$insert->bindValue(":email", $form->email);
 					$insert->bindValue(":telefone", $form->telefone);

@@ -5,7 +5,7 @@ mysqli_set_charset($link,"utf8");
 
 $lotes = array();
 
-$sql = "SELECT vl_lote, dt_inicio, dt_termino FROM tb_lote L INNER JOIN tb_curso C ON L.id_turma = C.codigo WHERE L.id_turma = ".$course_id."";
+$sql = "SELECT vl_lote, dt_inicio, dt_termino FROM tb_lote L INNER JOIN tb_curso C ON L.id_turma = C.codigo WHERE L.id_turma = ".$id_curso."";
 
 $res = mysqli_query($link, $sql );
 

@@ -3,7 +3,7 @@ $link = mysqli_connect("localhost", "root", "", "lisieux_treinamento");
 
 mysqli_set_charset($link,"utf8");
 
-$query = mysqli_query($link, "SELECT * FROM  ci_aula_curso WHERE cd_curso = ".$info_curso->id."");
+$query = mysqli_query($link, "SELECT * FROM  tb_aula_turma WHERE id_turma = ".$info_curso->id."");
 
 $i = 1;
 $conteudo = array();
