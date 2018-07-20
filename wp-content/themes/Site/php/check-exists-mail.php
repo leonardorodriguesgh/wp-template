@@ -4,7 +4,7 @@ require("connection.php");
 
 $check = $_POST['email'];
 
-$query = $conn->prepare("SELECT * FROM ci_aluno WHERE nm_email = :email ");
+$query = $conn->prepare("SELECT * FROM tb_usuario WHERE email = :email ");
 $query->bindValue(':email', $check);
 $query->execute();
 

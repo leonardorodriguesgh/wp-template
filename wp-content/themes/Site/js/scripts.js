@@ -416,6 +416,7 @@ $(document).ready(function() {
                     console.log(response);
 
                     var data = $.parseJSON(response);
+                    console.log(data);
                     if (data.return == "true") {
 
                         var username = $("input[name=log_email]").val();

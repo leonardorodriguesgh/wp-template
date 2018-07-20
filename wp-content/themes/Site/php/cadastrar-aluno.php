@@ -31,32 +31,44 @@ if($_POST) :
 					'data'				=> $_POST['dataNascimento'],
 					'genero'			=> $_POST['genero'],
 					'senha'				=> md5($_POST['senha']),
-					'cpf'				=> $_POST['cpf'],
-					'cep'				=> $_POST['cep'],
-					'cidade' 			=> $_POST['cidade'],
-					'estado'			=> $_POST['estado'],
-					'endereco'			=> $_POST['endereco']
+					'cpf'				=> $_POST['cpf']
+					// 'cep'				=> $_POST['cep'],
+					// 'cidade' 			=> $_POST['cidade'],
+					// 'estado'			=> $_POST['estado'],
+					// 'endereco'			=> $_POST['endereco']
 				);
 				
 				try{
-
-					$insert = $conn->prepare("INSERT INTO  ci_aluno (nm_aluno, nm_email, cd_telefone, dt_nascimento, dt_registro, nm_genero, cd_senha_usuario, cd_cpf, cd_cep, nm_cidade, nm_estado, nm_endereco) VALUES (:nome, :email, :telefone, :data, :dataR, :genero, :senha, :cpf, :cep, :cidade, :estado, :endereco)");//insert aluno / usuario
-					$insert->bindValue(":nome", $form->nome);
-					$insert->bindValue(":email", $form->email);
-					$insert->bindValue(":telefone", $form->telefone);
+					// cd_telefone, dt_nascimento, dt_registro, nm_genero,cd_cpf, cd_cep, nm_cidade, nm_estado, nm_endereco
+					$insertUser = $conn->prepare("INSERT INTO  tb_usuario (codigo, perfil, data_cadastro, ativo, nome, email, senha, suspenso, foto, data_modificacao, modificado_por ) 
+					VALUES (null, 2, date('d/m/y'), 1, :nome, :email, :senha, 0, 'teste', date('d/m/y'), 1)");//insert aluno / usuario
+					$insertUser->bindValue(":nome", $form->nome);
+					$insertUser->bindValue(":email", $form->email);
+					$insertUser->bindValue(":senha", $form->senha);
+					
+					if($insertUser->execute() === false){
+						echo "<pre>";
+						print_r($insertUser->errorInfo());
+					}
+					$id_usuario = $conn->lastInsertId();
 					// Cadastro da data atual
-					$now = new DateTime('America/Sao_Paulo');
-					$dataRegistro = $now->format('Y-m-d');
+					$insert = $conn->prepare("INSERT INTO  tb_aluno (id_aluno, id_usuario, telefone, dt_ultima_alteracao, id_ultima_alteracao, dt_nascimento, ds_sexo, ds_estado_civil, celular, ds_observacao, rg, cpf, naturalidade,
+					 nacionalidade, ativo) 
+					 VALUES 
+					 (null, :id_usuario,:telefone, date('d/m/y'), 1, :dt_nascimento, :genero, 'solteiro', :telefone, 'teste', 111111111, :cpf, 'teste', 'br', 1)");//insert aluno / usuario
+					//$now = new DateTime('America/Sao_Paulo');
+					$insert->bindValue(":id_usuario", $id_usuario);
+					//$dataRegistro = $now->format('Y-m-d');
 					$dataNascimento = implode('-', array_reverse(explode('/', $form->data)));
-					$insert->bindValue(":data", $dataNascimento );
-					$insert->bindValue(":dataR", $dataRegistro );
+					$insert->bindValue(":dt_nascimento", $dataNascimento );
+					// $insert->bindValue(":dataR", $dataRegistro );
 					$insert->bindValue(":genero", isset($form->genero) ? $form->genero  : null );
-					$insert->bindValue(":senha", $form->senha);
+					$insert->bindValue(":telefone", $form->telefone);
 					$insert->bindValue(":cpf", $form->cpf);
-					$insert->bindValue(":cep", $form->cep);
-					$insert->bindValue(":cidade", $form->cidade);
-					$insert->bindValue(":estado", $form->estado);
-					$insert->bindValue(":endereco", $form->endereco);
+					// $insert->bindValue(":cep", $form->cep);
+					// $insert->bindValue(":cidade", $form->cidade);
+					// $insert->bindValue(":estado", $form->estado);
+					// $insert->bindValue(":endereco", $form->endereco);
 					//$insert->execute();
 
 					if($insert->execute() === false){
@@ -68,7 +80,7 @@ if($_POST) :
 					throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
 				}
 
-				$gid = $conn->prepare(" SELECT MAX(cd_aluno) FROM ci_aluno ");
+				$gid = $conn->prepare(" SELECT MAX(codigo) FROM tb_usuario ");
 			    $gid->execute();
 			    $cod = $gid->fetchColumn();
 

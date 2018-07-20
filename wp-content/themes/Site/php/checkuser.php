@@ -6,7 +6,7 @@ $user = (object) array(
 	'password'	=> md5($_POST['log_senha'])
 );
 
-$query = $conn->prepare("SELECT * FROM tb_usuario WHERE email = :email and senhao  = :senha AND ativo = 1");
+$query = $conn->prepare("SELECT * FROM tb_usuario WHERE email = :email and senha  = :senha AND ativo = 1");//SELECT * FROM ci_aluno WHERE nm_email = :email and cd_senha_usuario  = :senha AND ic_ativo = 1
 $query->bindValue(':email', $user->email);
 $query->bindValue(':senha', $user->password);
 $query->execute();
@@ -17,8 +17,8 @@ if($query->rowCount() > 0) {
 	}
 
 } else{
-	
-	$query2 = $conn->prepare("SELECT * FROM  tb_usuario WHERE email = :email AND senha = :senha AND ativo = 1 ");//patrocinador
+	echo "ue";
+	$query2 = $conn->prepare("SELECT * FROM  ci_patrocinador WHERE nm_email = :email AND cd_senha_usuario = :senha AND ic_ativo = 1 ");//patrocinador
 	$query2->bindValue(':email', $user->email);
 	$query2->bindValue(':senha', $user->password);
 	$query2->execute();
