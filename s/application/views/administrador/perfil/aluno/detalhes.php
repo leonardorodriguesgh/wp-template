@@ -60,12 +60,12 @@
 						<div class="form">
 							<?php
 								//var_dump($alunoUsuario);
-								echo form_open('Administrador/Aluno/ativarAluno/'.$aluno['id_aluno']);
+								echo form_open('Administrador/Aluno/ativarAluno/'.$alunoUsuario[0]['id_aluno']);
 								?>
-								<button type="submit" id="ativar" name="ativar" onclick="window.location'<?php echo site_url("Administrador/Aluno/ativarAluno/".$aluno['id_aluno']);?>'" value="Ativar" style="background:transparent;border:0px; outline:none"/>
+								<button type="submit" id="ativar" name="ativar" onclick="window.location'<?php echo site_url("Administrador/Aluno/ativarAluno/".$alunoUsuario[0]['id_aluno']);?>'" value="Ativar" style="background:transparent;border:0px; outline:none"/>
 									<img src="<?php echo site_url('assets')?>/images/sistema/menu/liberar.png" alt="">
 								</button>
-								<button type="submit" id="desativar" name="desativar"  onclick="window.location'<?php echo site_url("Administrador/Aluno/ativarAluno/".$aluno['id_aluno']);?>'" value="Desativar" style="background:transparent;border:0px; outline:none"/>
+								<button type="submit" id="desativar" name="desativar"  onclick="window.location'<?php echo site_url("Administrador/Aluno/ativarAluno/".$alunoUsuario[0]['id_aluno']);?>'" value="Desativar" style="background:transparent;border:0px; outline:none"/>
 									<img src="<?php echo site_url('assets')?>/images/sistema/menu/bloquear.png" alt="">
 								</button>
 								
@@ -85,9 +85,9 @@
 					<strong>Status: </strong><br>
 					<p id="getAtivo" value="<?php if($alunoUsuario[0]['ativo'] == 1){ echo "Ativo"; }elseif($alunoUsuario[0]['ativo'] == 0){ echo "Inativo";}?>">
 						<?php
-							if($aluno['ativo'] == 1){
+							if($alunoUsuario[0]['ativo'] == 1){
 								echo "Ativo";
-							}elseif($aluno['ativo'] == 0){
+							}elseif($alunoUsuario[0]['ativo'] == 0){
 								echo "Bloqueado";
 							}
 						?>					

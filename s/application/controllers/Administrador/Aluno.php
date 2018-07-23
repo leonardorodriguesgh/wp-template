@@ -238,9 +238,9 @@ class Aluno extends CI_Controller {
 		if(isset($data['query'][0]['codigo'])){$id = $data['query'][0]['codigo'];}else{$id = "";}
 		//var_dump($data['query']);
 		
-		$data['aluno'] = $this->Aluno_model->getAluno($id);
+		//$data['aluno'] = $this->Aluno_model->getAluno($id);
 		//var_dump($data['aluno']);
-		$cpf = $data['aluno']['cpf'];
+		$cpf = $data['query'][0]['cpf'];
 		$data['cpf'] = $this->my_functions->formatar_cpf($cpf);
 
 		if(empty($data['query']) && ($nome) == ""){	     	
@@ -269,8 +269,8 @@ class Aluno extends CI_Controller {
 	|
 	|*/
 	public function select_aluno($id){
-		$data['ativo']  = 'curso';
-		$data['titulo'] = 'Curso '. $id;
+		$data['ativo']  = 'aluno';
+		$data['titulo'] = 'Aluno '. $id;
 		$this->load->view('administrador/templates/header', $data);		
 		$this->load->view('administrador/templates/nav_menu',$data);
 		$data['aluno'] = $this->Aluno_model->getAluno($id);		

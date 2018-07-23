@@ -2,7 +2,7 @@
 <div class="col-md-12" id="info-aluno" style="border-bottom: 1px solid #ccc">
 	<?php
 		//Mascara CPF
-
+		// var_dump($infoPagamento);
 		$string = $cpf;	        	
         $s_string = trim(chunk_split($string, 3, '.'), '.');
         $alunoCpf = $s_string;
@@ -55,11 +55,11 @@
 	<div class="row text-left">
 		<div class="col-md-2">
 			<strong> CEP </strong>
-			<p> - - - - - </p>
+			<p><?php echo $alunoUsuario[0]['cep']?></p>
 		</div>
 		<div class="col-md-6">
 			<strong> Endereco </strong>
-			<p> - - - - - </p>
+			<p><?php echo $alunoUsuario[0]['endereco'].', '.$alunoUsuario[0]['numero']?></p>
 		</div>
 	</div>
 </div>
@@ -72,27 +72,28 @@
 		<thead style="border-bottom: 0px;">
 						
 			<tr>
-				<th scope="col"><label>Curso</label></th>
-				<th scope="col"><label>Forma de pagamento</label></th>
-				<th scope="col"><label>Valor/parcela</label></th>
-				<th scope="col"><label>Qnt. de parcelas</label></th>
-				<th scope="col"><label>Pago</label></th>
-				<th scope="col"><label>Valor Total</label></th>
+				<th scope="col" class="text-center"><label>Curso</label></th>
+				<th scope="col" class="text-center"><label>Forma de pagamento</label></th>
+				<th scope="col" class="text-center"><label>Valor/parcela</label></th>
+				<th scope="col" class="text-center"><label>Qnt. de parcelas</label></th>
+				<th scope="col" class="text-center"><label>Pago</label></th>
+				<th scope="col" class="text-center"><label>Valor Total</label></th>
 		
 			</tr>
 		</thead>	
 		
 		<tbody>
-			
+			<?php foreach($infoPagamento as $row):?>
 			<tr>   
 			    <td scope="row" name="" style="display:none;"></td>
-			    <td scope="row"> - - - - - </td>
-			    <td scope="row"> - - - - - </td>
-			    <td scope="row"> - - - - - </td>
-			    <td scope="row"> - - - - - </td>
-			    <td scope="row"> - - - - - </td>
-			    <td scope="row"> - - - - - </td>
-			</tr>			
+			    <td scope="row" style="width:250px"><?= $row['nm_curso']?></td>
+			    <td scope="row"><?= $row['ds_forma_pag']?></td>
+			    <td scope="row"><?= $row['vl_inscricao']?></td>
+			    <td scope="row">1</td>
+			    <td scope="row">n/a</td>
+			    <td scope="row"><?= $row['vl_inscricao']?></td>
+			</tr>	
+			<?php endforeach;?>		
 		</tbody>	
 	</table>
 </div>

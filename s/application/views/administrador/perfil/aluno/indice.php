@@ -45,11 +45,11 @@
 		<tbody>
 			<?php  
 			//var_dump($query[0]['nome']);
-			if(!empty($aluno)){
+			if(isset($query)){
 				//var_dump($query);
-				$al = $aluno['id_aluno'];
+				$al = $query[0]['id_aluno'];
 				//var_dump($al);
-				//foreach($al as $row):	
+				foreach($query as $row):	
 						
 				echo validation_errors('<div class="alert alert-danger">','</div>');			
         		echo form_open('administrador/aluno/select_aluno/'.$al);
@@ -60,18 +60,18 @@
 		        $acpf = substr_replace ( $alunoCpf , '-' , 11 , 1 );
 			?>	
 			<tr class="text-center">   
-			    <td scope="row" name="<?php echo $aluno['id_aluno']; ?>" style="display:none;"></td>
-			    <td scope="row"><?php echo $query[0]['nome'];?></td>
+			    <td scope="row" name="<?php echo $row['id_aluno']; ?>" style="display:none;"></td>
+			    <td scope="row"><?php echo $row['nome'];?></td>
 			    <td scope="row"><?php echo $acpf;?></td>
 			    <td scope="row"> - - - - - </td>
-			    <td scope="row"><?php if($aluno['ativo'] == 1){echo "Ativo";}elseif($aluno['ativo'] == 0){echo "<p style='color:red;'>Bloqueado</p>";}?></td>
+			    <td scope="row"><?php if($row['ativo'] == 1){echo "Ativo";}elseif($row['ativo'] == 0){echo "<p style='color:red;'>Bloqueado</p>";}?></td>
 			    <td scope="row"><button type="submit" name="det" style="background: transparent;border:none;outline:none;"><img src="<?php echo site_url('assets')?>/images/sistema/menu/detalhes.png" alt="Detalhes"></button></td>
 			</tr>
 			<?php 
 
 				echo form_close();
 			
-				//endforeach;
+				endforeach;
 				}
 				if(isset($message)){
 					echo $message;

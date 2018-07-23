@@ -23,7 +23,7 @@ class Aluno_model extends CI_Model {
     );
     //executa uma procedure que seleciona a tabela de especifico id
     //retorna a row da tabela do id em forma de array
-    return $this->Procedures->row_array($this->_SelecionarAluno, $data); 
+    return $this->Procedures->result_array($this->_SelecionarAluno, $data); 
     
    /* $query = $this->db->select('*')->from('tb_aluno')->where('id_aluno', $id)->get();
     $res = $query->result();
@@ -52,7 +52,7 @@ class Aluno_model extends CI_Model {
 
   }
   public function getAlunoUsuario($id){
-    $id = 2;
+    
     $data = array(
       'id_aluno' => $id 
       

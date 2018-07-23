@@ -15,7 +15,7 @@ while ( $row = mysqli_fetch_assoc( $query ) ) {
 		'numero' => $count++,
 		'inicio' => $row['dt_inicio'],
 		'final'	 => $row['dt_termino'],
-		'vagas'	 => $row['qts_vagas']/*,
+		'vagas'	 => $row['qtd_vagas']/*,
 		'boleto' => $row['ic_boleto'],
 		'cartao' => $row['qt_cartao']*/
 	);

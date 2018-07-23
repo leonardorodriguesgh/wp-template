@@ -19,8 +19,8 @@
 	<input type="text" name="alunoSearch" id="cursoSearch" class="form-control" placeholder="Digite o nome do aluno que você está buscando"/>
 </form>
 <?php 
-	//echo form_close();
-	//echo var_dump($query);
+	
+	// echo $query[0]['id_aluno'];
 ?>	
 
 <div class="table-responsive">
@@ -45,36 +45,35 @@
 		<tbody>
 			<?php  
 			//var_dump($query[0]['nome']);
-			if(!empty($aluno)){
+			if(isset($query)){
+				// var_dump($query);
+				foreach($query as $studant):
 				
-				$al = $aluno['id_aluno'];
-				
-						
 				echo validation_errors('<div class="alert alert-danger">','</div>');			
-        		echo form_open('administrador/desempenho/select_aluno_desempenho/'.$al);
-	        	/*echo var_dump($row);*/
+        		echo form_open('administrador/desempenho/select_aluno_desempenho/'.$studant['id_aluno']);
+	        	
 	        	$string = $cpf;	        	
 		        $s_string = trim(chunk_split($string, 3, '.'), '.');
 		        $alunoCpf = $s_string;
 		        $acpf = substr_replace ( $alunoCpf , '-' , 11 , 1 )
 			?>	
 			<tr class="text-center">   
-			    <td scope="row" name="<?= $aluno['id_aluno']; ?>" style="display:none;"></td>
-			    <td scope="row"><?= $query[0]['nome'];?></td>
+			    <td scope="row" name="<?= $studant['id_aluno']; ?>" style="display:none;"></td>
+			    <td scope="row"><?= $studant['nome'];?></td>
 			    <td scope="row"><?= $acpf;?></td>
 			    <td scope="row"> - - - - - </td>
-			    <td scope="row"><?php if($aluno['ativo'] == 1){echo "Ativo";}elseif($aluno['ativo'] == 0){echo "<p style='color:red;'>Bloqueado</p>";}?></td>
+			    <td scope="row"><?php if($studant['ativo'] == 1){echo "Ativo";}elseif($studant['ativo'] == 0){echo "<p style='color:red;'>Bloqueado</p>";}?></td>
 			    <td scope="row"><button type="submit" name="det" style="background: transparent;border:none;outline:none;"><img src="<?= site_url('assets')?>/images/sistema/menu/detalhes.png" alt="Detalhes"></button></td>
 			</tr>
 			<?php 
 
 				echo form_close();
-			
-				//endforeach;
-				}
-				if(isset($message)){
-					echo $message;
-				}
+				
+				endforeach;
+			}
+			if(isset($message)){
+				echo $message;
+			}
 			?>
 		</tbody>				
 	</table>

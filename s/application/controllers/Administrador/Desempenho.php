@@ -134,12 +134,12 @@ class Desempenho extends CI_Controller {
 		$nome = $this->input->post('alunoSearch');
 		$data['query'] = $this->Aluno_model->getAlunoIndex($nome);
 
-		if(isset($data['query'][0]['codigo'])){$id = $data['query'][0]['codigo'];}else{$id = "";}
+		//if(isset($data['query'][0]['codigo'])){$id = $data['query'][0]['codigo'];}else{$id = "";}
 		//var_dump($data['query']);
-		
-		$data['aluno'] = $this->Aluno_model->getAluno($id);
+		//echo $id;
+		//$data['aluno'] = $this->Aluno_model->getAluno($id);
 		//var_dump($data['aluno']);
-		$cpf = $data['aluno']['cpf'];
+		$cpf = $data['query'][0]['cpf'];
 		$data['cpf'] = $this->my_functions->formatar_cpf($cpf);
 
 		if(empty($data['query']) && ($nome) == ""){	     	
@@ -162,6 +162,8 @@ class Desempenho extends CI_Controller {
 		$ativo = 1 || 0;
 		$data['cursoNum'] = $this->Curso_model->contaCurso($ativo);
 		$data['alunoUsuario'] = $this->Aluno_model->getAlunoUsuario($aluno);  
+		
+		//var_dump($data['alunoUsuario']);
 
 		$this->load->view('administrador/templates/header', $data);
 		$this->load->view('administrador/templates/nav_menu',$data);

@@ -137,6 +137,7 @@ table{
 	background-color: #f9f9f9;
 	border-bottom:1px solid #cecece;	
 	padding-bottom:2px;
+	max-width: 300px;
 }
 .btn-group-lg>.btn, .btn-lg{
 	padding:5px;
@@ -697,7 +698,10 @@ body.modal-open .container{
 	.addThing{
 		/*min-height:13vh;
 		min-height: 13vh;*/
-		padding:4.9% 0% !important;
+		padding-top:4.5% !important;
+		padding-bottom:0px !important;
+		max-height:112px;
+		min-height: 112px !important;
 		min-width: 31%;
 		max-width: 31%; 
 	}
@@ -705,7 +709,7 @@ body.modal-open .container{
 		max-height: 112px !important;
 		min-height: 112px;
 		/*font-size: 14px;*/
-		padding-top: 15px;
+		padding-top: 6px;
 	}
 	img + .info_descricao{
 		display: none;

@@ -22,8 +22,8 @@
 			<p><?= $alunoUsuario[0]['telefone']?></p>		
 			<strong>Data de nascimento:</strong>
 			<p><?= $alunoUsuario[0]['dt_nascimento']?></p>
-			<!--<strong>CEP:</strong>
-			<p><?php //echo $alunoUsuario[0]['telefone']?></p>-->			
+			<strong>CEP:</strong>
+			<p><?php echo $alunoUsuario[0]['cep']?></p>		
 
 		</div>
 		<div class="col-md-2 a-info d-green"><br>
@@ -31,13 +31,13 @@
 			<p><?= $alunoUsuario[0]['celular']?></p>
 			<strong>Sexo:</strong>
 			<p><?= ($alunoUsuario[0]['ds_sexo'] = 'm') ? 'Masculino': "Feminino"; ?></p>
-			<!--<strong>Endereco:</strong>
-			<p><?php //echo $alunoUsuario[0]['nome']?></p>-->
+			<strong>Endereco:</strong>
+			<p><?php echo $alunoUsuario[0]['endereco'].', '.$alunoUsuario[0]['numero']?></p>
 				
 		</div>
 		<div class="col-md-2 a-info d-green"><br>
 			<strong>Email:</strong>
-			<p><?= $alunoUsuario[0]['email']?></p>
+			<p style="width:200px; word-wrap:break-word;"><?= $alunoUsuario[0]['email']?></p>
 			<strong>CPF:</strong>
 			<p><?= $alunoUsuario[0]['cpf']?></p>
 			<strong>RG:</strong>

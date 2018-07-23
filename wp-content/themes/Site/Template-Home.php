@@ -5,7 +5,7 @@
 <?php global $course_id; $wp_session = WP_Session::get_instance(); ?>
 
 <?php include('carousel.php');?>
-<?php var_dump($wp_session['UserID']);?>
+<?php //var_dump($wp_session['UserID']);?>
 <section class="section" id="section1"> 
 	<div class="container">
 		

@@ -33,7 +33,7 @@
 		// 'final_turma'	=> date("d/m/Y", strtotime($row['dt_termino'])),
 		'sigla'			=> $row['sigla_curso']
 	);
-	echo $id_curso;
+	
  ?>
 <?php  if (isset($info_curso)) : ?>
 

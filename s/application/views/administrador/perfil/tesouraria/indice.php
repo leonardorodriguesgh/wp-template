@@ -39,13 +39,15 @@
 		<tbody>
 			<?php  
 			//var_dump($query[0]['nome']);
-			if(!empty($aluno)){
+			if(isset($query)){
 				
-				$al = $aluno['id_aluno'];
 				
-						
+				
+				foreach($query as $row):
+				
+
 				echo validation_errors('<div class="alert alert-danger">','</div>');			
-        		echo form_open('administrador/tesouraria/recibo/'.$al);
+        		echo form_open('administrador/tesouraria/recibo/'.$row['id_aluno']);
 	        	/*echo var_dump($row);*/
 	        	$string = $cpf;	        	
 		        $s_string = trim(chunk_split($string, 3, '.'), '.');
@@ -53,8 +55,8 @@
 		        $acpf = substr_replace ( $alunoCpf , '-' , 11 , 1 )
 			?>	
 			<tr class="text-center">   
-			    <td scope="row" name="<?= $aluno['id_aluno']; ?>" style="display:none;"></td>
-			    <td scope="row"><?= $query[0]['nome'];?></td>
+			    <td scope="row" name="<?= $row['id_aluno']; ?>" style="display:none;"></td>
+			    <td scope="row"><?= $row['nome'];?></td>
 			    <td scope="row"> - - - - - </td>
 			    <td scope="row"> - - - - - </td>			    
 			    <td scope="row"><button type="submit" name="det" style="background: transparent;border:none;outline:none;"><img src="<?php echo site_url('assets')?>/images/sistema/menu/detalhes.png" alt="Detalhes"></button></td>
@@ -63,7 +65,7 @@
 
 				echo form_close();
 			
-				//endforeach;
+				endforeach;
 				}
 				if(isset($message)){
 					echo $message;

@@ -11,6 +11,7 @@ class Tesouraria extends CI_Controller {
 
 		$this->load->model('Aluno_model');
 		$this->load->model('Curso_model');
+		$this->load->model('Tesouraria_model');
 		$this->load->model('Solicitacao_model');
 		$this->redirecionar_login();		
 		$this->redirecionar_perfil();
@@ -129,9 +130,9 @@ class Tesouraria extends CI_Controller {
 		if(isset($data['query'][0]['codigo'])){$id = $data['query'][0]['codigo'];}else{$id = "";}
 		//var_dump($data['query']);
 		
-		$data['aluno'] = $this->Aluno_model->getAluno($id);
+		//$data['aluno'] = $this->Aluno_model->getAluno($id);
 		//var_dump($data['aluno']);
-		$cpf = $data['aluno']['cpf'];
+		$cpf = $data['query'][0]['cpf'];
 		$data['cpf'] = $this->my_functions->formatar_cpf($cpf);
 
 		if(empty($data['query']) && ($nome) == ""){	     	
@@ -155,13 +156,15 @@ class Tesouraria extends CI_Controller {
 		$this->load->view('administrador/templates/header', $data);
 		$this->load->view('administrador/templates/nav_menu',$data);
 
-		$data['aluno'] = $this->Aluno_model->getAluno($aluno);
-		$cpf = $data['aluno']['cpf'];
-		$rg = $data['aluno']['rg'];
+		$data['alunoUsuario'] = $this->Aluno_model->getAlunoUsuario($aluno);  
+		$data['infoPagamento'] = $this->Tesouraria_model->getPagamento($aluno);
+		//$data['aluno'] = $this->Aluno_model->getAluno($aluno);
+		$cpf = $data['alunoUsuario'][0]['cpf'];
+		$rg = $data['alunoUsuario'][0]['rg'];
 		$data['cpf'] = $this->my_functions->formatar_cpf($cpf);
 		$data['rg'] = $this->my_functions->formatar_cpf($rg);
 		
-		$data['alunoUsuario'] = $this->Aluno_model->getAlunoUsuario($aluno);  
+		
 		$this->load->view('administrador/perfil/tesouraria/recibo',$data);
 		$this->load->view('administrador/templates/footer', $data);
 	}
