@@ -3,21 +3,21 @@
 $link = mysqli_connect("localhost", "root", "", "lisieux_treinamento");
 
 mysqli_set_charset($link,"utf8");
-
+//,T.ic_boleto, T.qt_cartao
 $turmas = array();
-$sql = "SELECT T.cd_turma_curso, T.dt_inicio_turma, T.dt_final_turma, T.qt_vaga_disponivel,T.ic_boleto, T.qt_cartao FROM ci_turma_curso T INNER JOIN ci_curso C ON T.cd_curso = C.cd_curso WHERE T.cd_curso = ".$course_id."";
+$sql = "SELECT T.id_turma, T.dt_inicio, T.dt_termino, T.qtd_vagas FROM tb_turma T INNER JOIN tb_curso C ON T.id_curso = C.codigo WHERE T.id_curso = ".$id_curso."";
 $query = mysqli_query($link, $sql);
 $count = 1;
 
 while ( $row = mysqli_fetch_assoc( $query ) ) {
 	$turmas[] = array(
-		'id'	 => $row['cd_turma_curso'],
+		'id'	 => $row['id_turma'],
 		'numero' => $count++,
-		'inicio' => $row['dt_inicio_turma'],
-		'final'	 => $row['dt_final_turma'],
-		'vagas'	 => $row['qt_vaga_disponivel'],
+		'inicio' => $row['dt_inicio'],
+		'final'	 => $row['dt_termino'],
+		'vagas'	 => $row['qts_vagas']/*,
 		'boleto' => $row['ic_boleto'],
-		'cartao' => $row['qt_cartao']
+		'cartao' => $row['qt_cartao']*/
 	);
 }
 ?>

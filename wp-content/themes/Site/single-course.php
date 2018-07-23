@@ -40,7 +40,7 @@ $query = mysqli_query($link, $sql);
 while($row = mysqli_fetch_assoc($query)){
 	$id_curso = $row['codigo'];
 	$queryVagas = "SELECT T.qtd_vagas - count(I.id_turma)  as Disponiveis  FROM `tb_turma` as T
-	INNER JOIN tb_inscricao as I ON T.id_curso = I.id_turma
+	INNER JOIN tb_inscricao as I ON T.id_turma = I.id_turma
 	WHERE T.id_curso = ".$id_curso;
 	
 

@@ -9,7 +9,32 @@
 
 
 <?php  include('single-course.php'); ?>
-
+<?php 	$info_curso = (object) array(
+		'id' 			=> $row['codigo'],
+		/*'dia_semana'	=> $row['nm_dia_semana'],
+		'hr_inicio'		=> $row['hr_inicio'],
+		'hr_termino'	=> $row['hr_termino'],*/
+		'dt_inicio'		=> date("d/m/Y", strtotime($row['dt_inicio'])),
+		'dt_termino'	=> date("d/m/Y", strtotime($row['dt_termino'])),
+		'tipo'			=> $row['tipo'],
+		'vagas'			=> $row['qtd_vagas'],
+		'disponiveis'	=> $vagasDisponiveis,
+		'image' 		=> $row['url_banner'],
+		//'image_mob'		=> $row['nm_url_capa_mobile_curso'],
+		'titulo'		=> $row['nm_curso'],
+		'chamada' 		=> ($row['ds_curso'] == "") ? $row['nm_curso'] : $row['ds_curso'],
+		//'descricao' 	=> $row['ds_informacao_curso'],
+		'aulas' 		=> $row['qtd_aulas'],
+		'horas' 		=> $row['qtd_horas'],
+		'tag' 			=> $row['tag_curso'],
+		//'link'			=> $row['nm_url_landing_page'],
+		//'pdf'			=> $row['nm_url_pdf'],
+		// 'init_turma'	=> date("d/m/Y", strtotime($row['dt_inicio'])),
+		// 'final_turma'	=> date("d/m/Y", strtotime($row['dt_termino'])),
+		'sigla'			=> $row['sigla_curso']
+	);
+	//var_dump($info_curso->disponiveis);
+ ?>
 <?php  if (isset($info_curso)) : ?>
 
 	<section class="content_course_intern">
@@ -18,8 +43,8 @@
 				
 				<div class="apresentacao_curso">
 					<picture>
-						<source media="(min-width: 768px)" srcset="<?php  echo $info_curso->image ?>">
-						<img class="img-responsive" src="<?php  echo $info_curso->image_mob ?>">
+						<source media="(min-width: 768px)" srcset="<?php bloginfo('url')?>/s<?php  echo $info_curso->image ?>">
+						<img class="img-responsive" src="<?php bloginfo('url')?>/s<?php echo $info_curso->image ?>">
 					</picture>
 					<h3 class="ttl_curso"><?php  echo $info_curso->titulo ?></h3>
 					<p class="txt_curso"><?php  echo $info_curso->chamada ?></p>
@@ -102,6 +127,7 @@
 					<div>
 						<?php  
 							$wp_session = WP_Session::get_instance();
+							
 							if($wp_session['UserLogin'] != '' || $wp_session['UserLogin'] != null) { ?>
 								<div class="libera-continuar" style="display:none">
 									<span class="btn_form btn_login" id="js-pagamento--libera">Continuar compra</span>
