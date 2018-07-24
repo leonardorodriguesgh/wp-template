@@ -93,7 +93,7 @@
                             else:
                                 echo '<li><a href="#" id="go-painel" data-tipo="'.$wp_session['typeUser'].'" data-email="'.$wp_session['UserLogin'].'"><span class="btn-login" style="background: url('.$wp_session['UserFoto'].')"></span></a></li>';
                                 echo '<li><a href="http://localhost/wordpress/logout"><span class="btn-login"></span></a></li>';
-                                 // echo '<li><a href="http://cursos.lisieuxtreinamento.com.br/meus-cursos/"><span class="btn-login"></span></a></li>';
+                                //echo '<li><a href="http://localhost/wordpress/meus-cursos/"><span  class="ancora">Meus Cursos</span></a></li>';
                             endif;
 
 

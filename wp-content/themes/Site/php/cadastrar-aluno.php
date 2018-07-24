@@ -31,11 +31,13 @@ if($_POST) :
 					'data'				=> $_POST['dataNascimento'],
 					'genero'			=> $_POST['genero'],
 					'senha'				=> md5($_POST['senha']),
-					'cpf'				=> $_POST['cpf']
-					// 'cep'				=> $_POST['cep'],
-					// 'cidade' 			=> $_POST['cidade'],
-					// 'estado'			=> $_POST['estado'],
-					// 'endereco'			=> $_POST['endereco']
+					'cpf'				=> $_POST['cpf'],
+					'cep'				=> $_POST['cep'],
+					'cidade' 			=> $_POST['cidade'],
+					'bairro'			=> $_POST['bairro'],
+					'estado'			=> $_POST['estado'],
+					'endereco'			=> $_POST['endereco'],
+					'numero'			=> $_POST['numero']
 				);
 				
 				try{
@@ -74,6 +76,23 @@ if($_POST) :
 					if($insert->execute() === false){
 					    echo "<pre>";
 					    print_r($insert->errorInfo());
+					}
+
+					$id_aluno = lastInsertId();
+
+					$insertUserEndereco = $conn->prepare("INSERT INTO  tb_aluno_endereco (id_aluno_endereco, id_aluno, ativo, cep, endereco, complemento, bairro, cidade, estado, dt_ultima_alteracao, id_ultima_alteracao) 
+					VALUES (null, :id_aluno, 1, :cep, :endereco, :numero, :bairro, :cidade, :estado, date('d/m/y'), 1)");//insert aluno / endereco
+					$insertUserEndereco->bindValue(":id_aluno", $id_aluno);
+					$insertUserEndereco->bindValue(":cep", $form->cep);
+					$insertUserEndereco->bindValue(":cidade", $form->cidade);
+					$insertUserEndereco->bindValue(":estado", $form->estado);
+					$insertUserEndereco->bindValue(":endereco", $form->endereco);
+					$insertUserEndereco->bindValue(":bairro", $form->bairro);
+					$insertUserEndereco->bindValue(":numero", $form->numero);
+					
+					if($insertUserEndereco->execute() === false){
+						echo "<pre>";
+						print_r($insertUser->errorInfo());
 					}
 
 				} catch(PDOException $Exception){

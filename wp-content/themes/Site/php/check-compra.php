@@ -1,4 +1,4 @@
-<?
+<?php
 require("connection.php");
 
 header('Access-Control-Allow-Origin: *');
@@ -13,11 +13,11 @@ if(isset($_GET['delta'])){
         */
 
         // Email da conta oficial do PS
-        $emailPagseguro = "polonio@eslisieux.com.br";
+        $emailPagseguro = "@MAIL";
 
         /* PRODUÇÃO */
         $urlPagseguro = "https://ws.pagseguro.uol.com.br/v2/"; 
-        $tokenPagseguro = "AC803C0ABCFE4D61B25D452F8FDC63B6";
+        $tokenPagseguro = "@TOKEN";
 
         /* SANDBOX  */
         // $urlPagseguro = "https://ws.sandbox.pagseguro.uol.com.br/v2/"; 
@@ -27,18 +27,23 @@ if(isset($_GET['delta'])){
         // $codigoVerificacao = $_POST['codigo'];
 
         // Consulta para busca de código de compra e status no banco
-        $buscaStatus = $conn->prepare("SELECT * FROM `ci_pagamento_inscricao`");
+        $buscaStatus = $conn->prepare("SELECT P.id_pagamento as pagamento, P.id_status_pag as status, T.id_curso as curso, 
+        P.id_inscricao as inscricao, I.id_turma as turma 
+        FROM tb_pagamento P
+        INNER JOIN tb_inscricao I ON P.id_inscricao = I.id_inscricao
+        INNER JOIN tb_turma T ON I.id_turma = T.id_turma
+        INNER JOIN tb_curso C ON T.id_curso = C.codigo");
         $buscaStatus->execute();
 
         // Percorre todos os dados do banco para pegar os códigos e status cadastrados
         while($row = $buscaStatus->fetch()) {
 
-            $codigoVerificacao     = $row['cd_compra'];
-            $status_atual          = $row['cd_status_pagamento'];
-            $curso                 = $row['cd_curso'];
-            $pagamento_inscricao   = $row['cd_pagamento_inscricao'];
-            $responsavel_inscricao = $row['cd_responsavel_inscricao'];
-            $turma_curso           = $row['cd_turma_curso'];
+            $codigoVerificacao     = $row['pagamento'];
+            $status_atual          = $row['status'];
+            $curso                 = $row['curso'];
+            $pagamento_inscricao   = $row['inscricao'];
+            /*$responsavel_inscricao = $row['cd_responsavel_inscricao'];*/
+            $turma_curso           = $row['turma'];
             $data                  = date('Y-m-d');
 
             if($codigoVerificacao != '' || $codigoVerificacao != NULL):
@@ -149,28 +154,28 @@ if(isset($_GET['delta'])){
                             echo "Status antigo: ".$status_atual." > Status do PagSseguro: ".$status;
                             if($status == 3){
 
-                                $busca = $conn->prepare("SELECT MAX(cd_inscricao_curso) FROM `ci_inscricao_curso_aluno`");
+                                $busca = $conn->prepare("SELECT MAX(id_inscricao) FROM tb_inscricao");
                                 $busca->execute();
                                 $codigo = $busca->fetchColumn(0);
                                 $codigo = $codigo + 1;
 
-                                $productQuery = $conn->prepare("SELECT qt_total_horas, qt_numero_aulas FROM `ci_curso` WHERE cd_curso = ".$product."");
+                                $productQuery = $conn->prepare("SELECT qtd_horas, qtd_aulas FROM tb_turma WHERE id_curso = ".$product."");
                                 $productQuery->execute();
                                 while($rows = $productQuery->fetch()) {
-                                    $aulas =  $rows['qt_numero_aulas'];
-                                    $horas = $rows['qt_total_horas'] * 3600;
+                                    $aulas =  $rows['qtd_aulas'];/**/
+                                    $horas = $rows['qtd_horas'] * 3600;/* */
                                     /* Se o status da compra estiver concluída, cadastra o aluno no curso e na turma */
-                                    $cadastraAluno = $conn->prepare("INSERT INTO `ci_inscricao_curso_aluno`(
-                                        `cd_inscricao_curso`,
-                                        `cd_aluno`,
+                                    $cadastraAluno = $conn->prepare("INSERT INTO `tb_inscricao`(
+                                        `id_inscricao`,/**/
+                                        `id_aluno`,/**/
                                         `cd_status_conclusao`,
-                                        `cd_turma_curso`,
+                                        `id_turma`,/**/
                                         `cd_situacao_aluno`,
                                         `cd_responsavel_inscricao`,
                                         `dt_inscricao`,
-                                        `qt_faltas`,
-                                        `qt_horas_aula`,
-                                        `qt_numero_aulas`
+                                        /*qt_faltas`,*/
+                                        `qtd_horas`,/**/
+                                        `qtd_aulas`/**/
                                     ) VALUES (
                                         '$codigo',
                                         '$responsavel_inscricao',

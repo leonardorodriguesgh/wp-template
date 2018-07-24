@@ -1,7 +1,7 @@
-<? /*Template Name: Confirmacao - Aluno */ ?>
-<? get_header(); ?>
+<?php /*Template Name: Confirmacao - Aluno */ ?>
+<?php get_header(); ?>
 
-<? 
+<?php 
 
 $key = base64_decode(substr(($wp_query->query_vars['cod']."=="), 32));
 
@@ -28,6 +28,6 @@ while($row = mysql_fetch_assoc($query)){
 </section>
 
 <style type="text/css">.footer{position: absolute; bottom: 0;}</style>
-<script src="<? bloginfo('template_url') ?>/js/timer.js"></script>
+<script src="<?php bloginfo('template_url') ?>/js/timer.js"></script>
 
-<? get_footer(); ?>
+<?php get_footer(); ?>

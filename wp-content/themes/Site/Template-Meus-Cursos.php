@@ -1,4 +1,4 @@
-<? /* Template Name: Meus Cursos */ ?>
-<? get_header() ?>
+<?php /* Template Name: Meus Cursos */ ?>
+<?php get_header() ?>
 
-<? get_footer() ?>
+<?php get_footer() ?>

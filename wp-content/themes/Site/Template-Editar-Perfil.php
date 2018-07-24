@@ -1,12 +1,12 @@
-<? /* Template Name: Editar Perfil */ ?>
+<?php /* Template Name: Editar Perfil */ ?>
 
-<? 
+<?php 
 $wp_session = WP_Session::get_instance(); 
 
 if(!isset($wp_session['UserName'])) : 
 	Redirect("login");
 else : ?>
-	<? get_header() ?>	
+	<?php get_header() ?>	
 
 		<div class="container">
 			
@@ -76,5 +76,5 @@ else : ?>
 		</div>
 
 
-	<? get_footer() ?>
-<? endif; ?>
+	<?php get_footer() ?>
+<?php endif; ?>

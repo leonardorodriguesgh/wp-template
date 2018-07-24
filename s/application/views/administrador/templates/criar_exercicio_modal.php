@@ -83,7 +83,7 @@
 	  		var tipo = "<?php echo $tipoQuestao[0]['id_tipo']?>";
 	  		/*--------------------------------------------- Ajax ---------------------------------------------*/
 
-			$.post("http://localhost/lisieuxtreinamentos/sistema/assets/php/db_questao.php",{			
+			$.post("<?= base_url("")?>/sistema/assets/php/db_questao.php",{			
 				tipo: tipo
 			},
 			function(resposta){				
@@ -146,7 +146,7 @@
 	  		/*/close*/				
 	  		/*--------------------------------------------- Ajax ---------------------------------------------*/
 
-			$.post("http://localhost/lisieuxtreinamentos/sistema/assets/php/db_questao.php",{						
+			$.post("<?= base_url("")?>/assets/php/db_questao.php",{						
 				tipo: tipo
 			},
 			function(resposta){
@@ -174,7 +174,7 @@
 					$('#'+qstMain+' .duplicate strong').last().after().html(arrayAlt[i]);	
 					/*--------------------------------------------- Ajax ---------------------------------------------*/
 
-					$.post("http://localhost/lisieuxtreinamentos/sistema/assets/php/db_alternativa.php",{
+					$.post("<?= base_url("")?>/assets/php/db_alternativa.php",{
 						tipo: tipo	
 					},
 					function(resposta){
@@ -231,7 +231,7 @@
 			var tipo = "<?php echo $tipoQuestao[2]['id_tipo']?>";
 	  		/*--------------------------------------------- Ajax ---------------------------------------------*/
 
-			$.post("http://localhost/lisieuxtreinamentos/sistema/assets/php/db_questao.php",{
+			$.post("<?= base_url("")?>/assets/php/db_questao.php",{
 				idLabelRes: idLabelRes,		
 				tipo: tipo
 			},
@@ -283,7 +283,7 @@
 					
 			  		/*--------------------------------------------- Ajax ---------------------------------------------*/
 
-					$.post("http://localhost/lisieuxtreinamentos/sistema/assets/php/db_alternativa.php",{
+					$.post("<?= base_url("")?>/assets/php/db_alternativa.php",{
 						tipo: tipo			
 					},
 					function(resposta){

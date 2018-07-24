@@ -1,3 +1,14 @@
+<script>
+window.onload = function(){
+	$.post("<?= base_url("")?>/assets/php/verifica_pagamento.php", {
+		teste: "teste"
+	},
+	function(data){
+		console.log(data);
+	});
+}
+
+</script>
 <div class="d-green text-left border-bot"><h1 id="print">LOREM IPSUM LOREM IPSUM   <button type="submit" class="btn btn-success" style="float:right; letter-spacing: .1em; padding: 8px 15px;"> IMPRIMIR </button></h1></div>
 <div class="col-md-12" id="info-aluno" style="border-bottom: 1px solid #ccc">
 	<?php
@@ -83,14 +94,19 @@
 		</thead>	
 		
 		<tbody>
-			<?php foreach($infoPagamento as $row):?>
+			<?php $vl_total = 0;
+			$pago = 0;
+			foreach($infoPagamento as $row):
+			$vl_total += $row['vl_inscricao'];	
+			($row['id_status_pag'] == 3) ? $pago += $row['vl_inscricao'] : $pago += 0 ;	
+			?>
 			<tr>   
 			    <td scope="row" name="" style="display:none;"></td>
 			    <td scope="row" style="width:250px"><?= $row['nm_curso']?></td>
 			    <td scope="row"><?= $row['ds_forma_pag']?></td>
 			    <td scope="row"><?= $row['vl_inscricao']?></td>
 			    <td scope="row">1</td>
-			    <td scope="row">n/a</td>
+			    <td scope="row"><?= $row['nm_status']?></td>
 			    <td scope="row"><?= $row['vl_inscricao']?></td>
 			</tr>	
 			<?php endforeach;?>		
@@ -113,21 +129,21 @@
 				<tr scope="row" style="border-top: 0px;">
 					<td>
 						<div class="col-md-6">Pago</div>
-						<div class="col-md-6" >R$ - - - </div>
+						<div class="col-md-6" >R$ <?= $pago?></div>
 					</td>
 					
 				</tr>
 				<tr scope="row">
 					<td>
 						<div class="col-md-6">A Pagar</div>
-						<div class="col-md-6" >R$ - - - </div>
+						<div class="col-md-6" >R$ <?= $vl_total - $pago?></div>
 					</td>
 					
 				</tr>	
 				<tr scope="row">
 					<td style="background-color: #297f54;color: #fff;border-top: 0px">
 						<div class="col-md-6" >Total</div>
-						<div class="col-md-6">R$ - - - </div>
+						<div class="col-md-6">R$ <?= $vl_total?></div>
 					</td>
 				</tr>						
 			</tbody>

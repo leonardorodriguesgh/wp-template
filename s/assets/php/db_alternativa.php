@@ -13,7 +13,7 @@
 	if(isset($busca)){var_dump($busca);}
 	var_dump($tipo);
 
-	/*try{
+	try{
 		$stmt = $conn->prepare("INSERT INTO tb_alternativa
 		(id_questao,
 		ds_enunciado,
@@ -43,8 +43,8 @@
 		$stmt->bindValue(':id_exercicio', NULL);
 		$stmt->execute();
 
-		echo "1";
+		echo "1";*/
 
 	}catch (PDOException $Exception){
 		throw new MyDatabaseException($Exception->getMessage(), $Exception->getCode());
-	}//Mostrar os erros*/
+	}//Mostrar os erros

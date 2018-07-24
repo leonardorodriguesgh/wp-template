@@ -112,7 +112,8 @@
 		$('.becomeCad').click(function(){
 
 			$( ".cad" ).toggle();
-			if($('.cad').is(":hidden")){		 		
+			if($('.cad').is(":hidden")){	
+				$('#esconde_cont').css('display', 'none !important');	 		
 		 		$('#nm_curso').append('<input type="text" name="nome" id="nome" placeholder="Digite o nome do curso" style="width:70%; border:0;outline:none;"/>');
 		 		$('#ds_tipo').append('<select id="tipo_curso" name="tipo" style="width:100%;padding:5px 45px;"><option value="presencial">Presencial</option><option value="distancia" selected>A Distancia</option></select>');
 		 		$('#sg_curso').append('<input type="text" name="sigla" id="sg" class="text-center" placeholder="Digite a sigla do curso" maxlength="2" style="width:100%;padding:5px 45px"/>');
