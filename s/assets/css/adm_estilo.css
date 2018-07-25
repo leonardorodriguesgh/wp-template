@@ -97,7 +97,7 @@ img {
 }
 .d-green h1{
 	margin: 0% 2.2% 2.2% 0%;
-	padding-bottom: 25px;
+	padding-bottom: 0px;
 	color:#297f54;
 }
 .d-green h3, .d-green strong{
@@ -715,9 +715,9 @@ body.modal-open .container{
 		display: none;
 	}
 	.green strong,.green p,.yellow strong,.yellow p,.blue strong,.blue p{display: inline-block;padding: 5vh 5px;}
-	#nm_curso{
+	/* #nm_curso{
 		height: 7vh !important;
-	}
+	} */
 	#nome::placeholder{
 		font-size: 22px;
 	}

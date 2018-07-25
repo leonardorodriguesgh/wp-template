@@ -89,14 +89,14 @@ class Material extends CI_Controller {
 		$data['titulo'] = 'Material';
 		$this->load->view('administrador/templates/header', $data);		
 		$this->load->view('administrador/templates/nav_menu',$data);
-		/*$data['materialDados'] = $this->Material_model->getMaterialApoio();
-		$this->load->view('administrador/perfil/material/indice', $data);*/
+		/*$data['materialDados'] = $this->Material_model->getMaterialApoio();*/
+		$this->load->view('administrador/perfil/turma/material', $data);
 		$this->load->view('administrador/templates/footer');		
 		
 			
 		if(isset($_POST['det'])){
 			//echo "det";
-			redirect('a/material');
+			redirect('administrador/material/material/'.$id);
 		}elseif(isset($_POST['remove'])){
 			redirect('administrador/material/callRemove/'.$id);
 			/*if (isset($_POST['rmMaterial'])) {
@@ -104,6 +104,16 @@ class Material extends CI_Controller {
 			}*/
 			//var_dump($id);
 		}
+	}
+
+	public function material($id){
+		$data['ativo']  = 'material';
+		$data['titulo'] = 'Material';
+		$this->load->view('administrador/templates/header', $data);		
+		$this->load->view('administrador/templates/nav_menu',$data);
+		/*$data['materialDados'] = $this->Material_model->getMaterialApoio();*/
+		$this->load->view('administrador/perfil/turma/material', $data);
+		$this->load->view('administrador/templates/footer');		
 	}
 
 

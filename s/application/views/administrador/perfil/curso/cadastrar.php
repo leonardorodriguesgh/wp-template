@@ -24,9 +24,9 @@
 				<div class="row">
 					<div class="col-md-12 d-green">
 						
-						<h1 class="text-left border-bot" id="nm_curso" class="cadastrar"><p class="cad" id="cadNome"><?php echo $cursoDados['nm_curso'];?></p>
+						<h1 class="text-left" id="nm_curso" class="cadastrar" style="border-bottom: 1px solid #ccc;padding-bottom: 0px:"><p class="cad" id="cadNome"><?php echo $cursoDados['nm_curso'];?></p>
 							<a href="#">
-								<img src="<?php echo site_url('assets')?>/images/sistema/menu/edit.png" class="becomeCad" alt="Editar" style="float:right; margin-top: 4px;">
+								<img src="<?php echo site_url('assets')?>/images/sistema/menu/edit.png" class="becomeCad" alt="Editar" style="float:right; top: 10px; position:absolute; right:10px">
 							</a>
 						</h1>
 						<div class="underline"></div>
@@ -50,7 +50,7 @@
 						    
 						</div>
 						<div class="col-md-6" style="border-right-width: 0px;margin-right: 0px;">
-							<h3>Descrição: </h3><p id="descricao"><p class="cad" id="desc"><?php echo $cursoDados['ds_curso'];?></p></p><br>  
+							<h3>Descrição: </h3><div id="descricao"><div class="cad" id="desc"><?php echo $cursoDados['ds_curso'];?></div></div><br>  
 						</div>						
 						
 				</div>	
@@ -113,7 +113,7 @@
 
 			$( ".cad" ).toggle();
 			if($('.cad').is(":hidden")){	
-				$('#esconde_cont').css('display', 'none !important');	 		
+				// $('#esconde_cont').css('display', 'none !important');	 		
 		 		$('#nm_curso').append('<input type="text" name="nome" id="nome" placeholder="Digite o nome do curso" style="width:70%; border:0;outline:none;"/>');
 		 		$('#ds_tipo').append('<select id="tipo_curso" name="tipo" style="width:100%;padding:5px 45px;"><option value="presencial">Presencial</option><option value="distancia" selected>A Distancia</option></select>');
 		 		$('#sg_curso').append('<input type="text" name="sigla" id="sg" class="text-center" placeholder="Digite a sigla do curso" maxlength="2" style="width:100%;padding:5px 45px"/>');

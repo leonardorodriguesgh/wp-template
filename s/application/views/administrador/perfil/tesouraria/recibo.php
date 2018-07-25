@@ -9,7 +9,9 @@ window.onload = function(){
 }
 
 </script>
-<div class="d-green text-left border-bot"><h1 id="print">LOREM IPSUM LOREM IPSUM   <button type="submit" class="btn btn-success" style="float:right; letter-spacing: .1em; padding: 8px 15px;"> IMPRIMIR </button></h1></div>
+<?= form_open(base_url('').'administrador/tesouraria/gerar_recibo');?>
+<div class="d-green text-left border-bot"><h1 id="print"><?= $alunoUsuario[0]['nome']?><button type="submit" class="btn btn-success" style="float:right; letter-spacing: .1em; padding: 8px 15px;"> IMPRIMIR </button></h1></div>
+<?= form_close();?>
 <div class="col-md-12" id="info-aluno" style="border-bottom: 1px solid #ccc">
 	<?php
 		//Mascara CPF

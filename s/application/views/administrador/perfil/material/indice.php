@@ -14,7 +14,7 @@
 			</p><strong><?= $certificadoNum['num']?></strong>
 		</div>
 				
-		<a href="<?php //echo site_url('administrador/material/detalhes');?>">
+		<a href="<?= site_url('administrador/turma/select_turma/1');?>">
 			<div class=" addThing">			
 				<img src="<?php echo site_url('assets')?>/images/sistema/menu/add_material.png" alt="Adicionar cursos">
 			</div>
@@ -62,10 +62,10 @@
 		        
 			?>	
 			<tr>   
-			    <td scope="row" name="<?php echo $row['id_material_apoio']; ?>" style="display:none;"></td>
-			    <td scope="row" style="text-align:left;"><?php echo $row['nm_material_apoio'] ?></td>
+			    <td scope="row" name="<?= $row['id_material_apoio']; ?>" style="display:none;"></td>
+			    <td scope="row" style="text-align:left;"><?= $row['nm_material_apoio'] ?></td>
 			    <td scope="row" style="text-align:right;"><button type="submit" name="det" style="background: transparent;border:none;outline: none;"><img src="<?php echo site_url('assets')?>/images/sistema/menu/detalhes.png" alt="Detalhes"></button>
-			    <button type="submit" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" name="remove" style="background: transparent;border:none;outline: none;margin:0px 15px;"><img src="<?php echo site_url('assets')?>/images/sistema/menu/delete.png" alt="Turmas"></button>
+			    <button type="submit" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" name="remove" style="background: transparent;border:none;outline: none;margin:0px 15px;"><img src="<?= site_url('assets')?>/images/sistema/menu/delete.png" alt="Turmas"></button>
 			</tr>
 			<?php 
 				echo form_close();
