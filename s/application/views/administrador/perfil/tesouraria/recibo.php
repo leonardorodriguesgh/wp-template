@@ -9,7 +9,7 @@ window.onload = function(){
 }
 
 </script>
-<?= form_open(base_url('').'administrador/tesouraria/gerar_recibo');?>
+<?= form_open(base_url('').'administrador/tesouraria/gerar_recibo/'.$alunoUsuario[0]['id_aluno']);?>
 <div class="d-green text-left border-bot"><h1 id="print"><?= $alunoUsuario[0]['nome']?><button type="submit" class="btn btn-success" style="float:right; letter-spacing: .1em; padding: 8px 15px;"> IMPRIMIR </button></h1></div>
 <?= form_close();?>
 <div class="col-md-12" id="info-aluno" style="border-bottom: 1px solid #ccc">
@@ -53,7 +53,7 @@ window.onload = function(){
 			<p><?= $alunoUsuario[0]['dt_nascimento']?></p>
 		</div>
 		<div class="col-md-2">
-			<strong> Sexo </strong>
+			<strong> GENERO </strong>
 			<p><?= ($alunoUsuario[0]['ds_sexo'] = 'm') ? 'Masculino': "Feminino"; ?></p>
 		</div>
 		<div class="col-md-2">
