@@ -96,7 +96,7 @@ class Material extends CI_Controller {
 			
 		if(isset($_POST['det'])){
 			//echo "det";
-			redirect('administrador/material/material/'.$id);
+			redirect('administrador/material/material_select/'.$id);
 		}elseif(isset($_POST['remove'])){
 			redirect('administrador/material/callRemove/'.$id);
 			/*if (isset($_POST['rmMaterial'])) {
@@ -106,11 +106,13 @@ class Material extends CI_Controller {
 		}
 	}
 
-	public function material($id){
+	public function material_select($id){
 		$data['ativo']  = 'material';
 		$data['titulo'] = 'Material';
 		$this->load->view('administrador/templates/header', $data);		
 		$this->load->view('administrador/templates/nav_menu',$data);
+		$data['turmaDados'] = $this->Material_model->getTurmaMaterial($id);
+		$data['aulaDados'] = $this->Material_model->getAllAulas();
 		/*$data['materialDados'] = $this->Material_model->getMaterialApoio();*/
 		$this->load->view('administrador/perfil/turma/material', $data);
 		$this->load->view('administrador/templates/footer');		

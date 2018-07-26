@@ -185,7 +185,7 @@ class Tesouraria extends CI_Controller {
 		// echo $relatorio_conteudo;
 		$filename = "recibo_lisieux.pdf";
 		
-		include_once APPPATH . 'vendor\mpdf/mpdf/mpdf.php'; 
+		
 		//$mpdf = new mPDF();//resgata o mpdf das pastas third_party
 
 		//echo $teste;
@@ -209,18 +209,12 @@ class Tesouraria extends CI_Controller {
 		//$mpdf->WriteHTML('<p><b>Minha nova página no arquivo PDF</b></p>');
 		// Gera o arquivo PDF
 		//$mpdf->Output();
-		$mpdf = new mPDF(
-             'utf-8',    // mode - default ''
-             'A4-P',    // format - A4, for example, default ''
-             0,     // font size - default 0
-             '',    // default font family
-             30,     // margin_left
-             30,     // margin right
-             30,    // margin top
-             30,    // margin bottom
-             0,     // margin header
-             0,     // margin footer
-             'P');  // L - landscape, P - portrait*/
+		print_r(gd_info());
+		$mpdf = new \Mpdf\Mpdf([
+			'mode' => 'utf-8',
+			'format' => [190, 236],
+			'orientation' => 'P'
+            ]);  // L - landscape, P - portrait*/
 		
 		
 		$alunoUsuario = $this->Aluno_model->getAlunoUsuario($aluno);  
