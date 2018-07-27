@@ -76,11 +76,12 @@ class Curso extends CI_Controller {
 			$sigla=$this->input->post('sigla');
 			$situacao=$this->input->post('situacao');
 			$ds_curso=$this->input->post('ds_curso');
+			$conteudo_programatico=$this->input->post('conteudo_programatico');
 			
 			$nm_tag_curso = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"),$nome);
 			$tag = str_replace(" ", "-", $nm_tag_curso);
 			$tag_curso = strtolower($tag);
-			if($this->Curso_model->adicionar($tag_curso, $nome, $tipo, $sigla, $situacao, $ds_curso))
+			if($this->Curso_model->adicionar($tag_curso, $nome, $tipo, $sigla, $situacao, $ds_curso, $conteudo_programatico))
 			{
 				$data['message'] = "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button><h4 class='alert alert-success alert-dismissible fade in' role='alert'>curso cadastrado :)</h4>";
 			}else{			
@@ -134,11 +135,15 @@ class Curso extends CI_Controller {
 			$tipo=$this->input->post('tipo');
 			$sigla=$this->input->post('sigla');
 			$situacao=$this->input->post('situacao');
-			$ds_curso=$this->input->post('ds_curso');
+			$ds_curso=$this->input->post('ds_curso');			
+			$conteudo_programatico=$this->input->post('conteudo_programatico');
 			$ativo=$this->input->post('ativo');
 
+			$nm_tag_curso = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"),$nome);
+			$tag = str_replace(" ", "-", $nm_tag_curso);
+			$tag_curso = strtolower($tag);
 
-			$this->Curso_model->editar($id_curso, $nome, $tipo, $sigla, $situacao, $ds_curso, $ativo);
+			$this->Curso_model->editar($id_curso, $tag_curso, $nome, $tipo, $sigla, $situacao, $ds_curso, $ativo, $conteudo_programatico);
 			$query = $this->db->select('*')->from('tb_curso')->where('codigo', $id_curso)->get();
 			$qr = $query->row();
 			//var_dump($qr);

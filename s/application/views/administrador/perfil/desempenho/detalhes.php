@@ -17,7 +17,7 @@
 			
 		</div>
 			
-		<div class="col-md-3 a-info d-green"><br>
+		<div class="col-md-3 a-info d-green text-left"><br>
 			<strong>Telefone:</strong>
 			<p><?= $alunoUsuario[0]['telefone']?></p>		
 			<strong>Data de nascimento:</strong>
@@ -26,7 +26,7 @@
 			<p><?php echo $alunoUsuario[0]['cep']?></p>		
 
 		</div>
-		<div class="col-md-2 a-info d-green"><br>
+		<div class="col-md-3 a-info d-green text-left"><br>
 			<strong>Celular:</strong>
 			<p><?= $alunoUsuario[0]['celular']?></p>
 			<strong>Sexo:</strong>
@@ -35,7 +35,7 @@
 			<p><?php echo $alunoUsuario[0]['endereco'].', '.$alunoUsuario[0]['numero']?></p>
 				
 		</div>
-		<div class="col-md-2 a-info d-green"><br>
+		<div class="col-md-2 a-info d-green text-left"><br>
 			<strong>Email:</strong>
 			<p style="width:200px; word-wrap:break-word;"><?= $alunoUsuario[0]['email']?></p>
 			<strong>CPF:</strong>
@@ -44,8 +44,13 @@
 			<p><?= $alunoUsuario[0]['rg']?></p>		
 		</div>
 	</div>	
+	<?php 
+	$i = 0;
+	foreach($pagamentoCurso as $row):
+	?>
+
 	<div class="row" style="border-bottom: 1px solid #ccc;padding-bottom: 20px">
-		<div class="col-md-12 text-left"><h2 style="color: #777">Curso Lorem Ipsum Dolor Sit Amet</h2></div>
+		<div class="col-md-12 text-left"><h2 style="color: #777"><?= $pagamentoCurso[$i]['nm_curso']?></h2></div>
 		<div class="col-md-4">
 			<div class="row">
 				<div class="col-md-6"><p></p></div>
@@ -69,6 +74,8 @@
 			<p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum </p>
 		</div>
 	</div>
+<?php $i += 1;
+endforeach;?>
 </div>
 	
 			

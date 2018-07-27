@@ -10,6 +10,7 @@ class Desempenho extends CI_Controller {
 		$this->redirecionar_login();
 		$this->load->model('Curso_model');
 		$this->load->model('Aluno_model');
+		$this->load->model('Tesouraria_model');
 		$this->load->model('Solicitacao_model');
 		$this->redirecionar_perfil();
 		$this->redirecionar_login();
@@ -162,6 +163,7 @@ class Desempenho extends CI_Controller {
 		$ativo = 1 || 0;
 		$data['cursoNum'] = $this->Curso_model->contaCurso($ativo);
 		$data['alunoUsuario'] = $this->Aluno_model->getAlunoUsuario($aluno);  
+		$data['pagamentoCurso'] = $this->Tesouraria_model->getPagamento($aluno);
 		
 		//var_dump($data['alunoUsuario']);
 

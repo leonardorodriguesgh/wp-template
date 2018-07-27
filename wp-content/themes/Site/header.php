@@ -86,12 +86,12 @@
                             //     $wp_session = WP_Session::get_instance();
                             //     echo '<script> window.location.href = "http://cursos.lisieuxtreinamento.com.br/" </script>';
                             // endif;  
-
+                            
                             $wp_session = WP_Session::get_instance();
                             if($wp_session['UserID'] == null) :
                                 echo '<li><span class="btn-login" data-toggle="modal" data-target="#myModal"></span></li>';
                             else:
-                                echo '<li><a href="#" id="go-painel" data-tipo="'.$wp_session['typeUser'].'" data-email="'.$wp_session['UserLogin'].'"><span class="btn-login" style="background: url('.$wp_session['UserFoto'].')"></span></a></li>';
+                                echo '<li><a href="http://localhost/wordpress/editar-perfil" id="go-painel" data-tipo="'.$wp_session['typeUser'].'" data-email="'.$wp_session['UserLogin'].'"><span class="btn-login" style="background: url('.$wp_session['UserFoto'].')"></span></a></li>';
                                 echo '<li><a href="http://localhost/wordpress/logout"><span class="btn-login"></span></a></li>';
                                 //echo '<li><a href="http://localhost/wordpress/meus-cursos/"><span  class="ancora">Meus Cursos</span></a></li>';
                             endif;
