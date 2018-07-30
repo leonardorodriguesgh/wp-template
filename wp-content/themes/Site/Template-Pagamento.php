@@ -252,6 +252,7 @@
 					  					<img class="bandeira" id="bandeira">
 									</div>
 									<div class="col-sm-6 col-md-4">
+									<input type="hidden" id="sessionId">
 										<input type="text" id="numero" name="numero" placeholder="Número" onblur="brandCard();" required="required" pattern="[0-9]+$" title="Apenas Números" maxlength="16">
 									</div>
 									<div class="col-sm-6 col-md-6">
@@ -264,7 +265,7 @@
 										<input type="text" id="mes" name="mes" placeholder="Mês (XX)" maxlength="2" minlength="2" required="required" pattern="[0-9]+$" title="Apenas Números">
 									</div>
 									<div class="col-sm-6 col-md-4">
-										<input type="text" id="ano" name="ano" placeholder="Ano (XX)" maxlength="2" minlength="2" required="required" pattern="[0-9]+$" title="Apenas Números" onblur="validarCartao(PagSeguroDirectPayment.getSenderHash());">
+										<input type="text" id="ano" name="ano" placeholder="Ano (XXXX)" maxlength="4" minlength="4" required="required" pattern="[0-9]+$" title="Apenas Números" onblur="validarCartao(PagSeguroDirectPayment.getSenderHash());">
 									</div>
 									<div class="col-sm-6 col-md-4">
 										<select name="parcelas" id="parcelas">
@@ -344,14 +345,16 @@
 	<script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
 
 	<script>
+	//passa p/ pag anterior? 
 		$(document).ready(function(){
 			$.ajax({
 				type: 'GET',
-				url: '/wp-content/themes/Site/pagseguro/get-session.php',
+				url: 'http://localhost/wordpress/wp-content/themes/Site/pagseguro/get-session.php',
 				cache: false,
 				success: function(data){
 					PagSeguroDirectPayment.setSessionId(data);
-					// console.log(data);
+					$('#sessionId').val(data);
+					console.log(data);
 				}
 			});
 		});

@@ -123,7 +123,7 @@ $(document).ready(function() {
     $('.item_turma').click(function() {
         $.ajax({
             type: 'GET',
-            url: '/wp-content/themes/Site/pagseguro/get-session.php',
+            url: 'http://localhost/wordpress/wp-content/themes/Site/pagseguro/get-session.php',
             cache: false,
             success: function(data) {
                 PagSeguroDirectPayment.setSessionId(data);
@@ -862,18 +862,19 @@ function brandCard() {
     var numcard = $("#numero").val();
     var bin = numcard.substr(0, 6);
     var brandID;
-
+    PagSeguroDirectPayment.setSessionId($('#sessionId').val());
     PagSeguroDirectPayment.getBrand({
         cardBin: bin,
         success: function(response) {
             brandID = response.brand.name;
-            // console.log(brandID);
-            // console.log(response.brand.name);
-            $("#bandeira").attr('src', 'https://stc.pagseguro.uol.com.br/public/img/payment-methods-flags/68x30/' + response.brand.name + '.png');
+            console.log(brandID);
+            console.log(response.brand.name);
+            $("#creditCardBrand").val(response.brand.name);
+            $("#bandeira").attr('src', ' https://stc.pagseguro.uol.com.br/public/img/payment-methods-flags/68x30/' + response.brand.name + '.png');
         },
         error: function(response) {
             //tratamento do erro
-            // console.log(response);
+            console.log(response);
         },
         complete: function(response) {
             //tratamento comum para todas chamadas
@@ -884,14 +885,14 @@ function brandCard() {
 function validarCartao(senderHash) {
 
     var cardTokenId = "";
-
+    PagSeguroDirectPayment.setSessionId($('#sessionId').val());
     PagSeguroDirectPayment.createCardToken({
 
         cardNumber: $("#numero").val(),
         brand: $("#creditCardBrand").val(),
         cvv: $("#cvv").val(),
         expirationMonth: $("#mes").val(),
-        expirationYear: "20" + $("#ano").val(),
+        expirationYear: $("#ano").val(),
 
         success: function(response) {
             $("#creditCardToken").val(response.card.token);
@@ -909,7 +910,7 @@ function fecharPedido(senderHash) {
     
     if(formAluno.data("cadastrado") == "sucesso") {
         if ($("#creditCardToken").val() == null || $("#creditCardToken").val() == "") {
-        //alert("Informe Corretamente os dados do seu cartão de crédito");
+            alert("Informe Corretamente os dados do seu cartão de crédito");
         } else {
 
             var parcelas, valorCurso, valorParcela;

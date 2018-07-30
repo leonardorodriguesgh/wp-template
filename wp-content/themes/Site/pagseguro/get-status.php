@@ -1,7 +1,7 @@
 <?php
 
 $urlPagseguro = "https://ws.pagseguro.uol.com.br/v2/"; 
-$emailPagseguro = "polonio@eslisieux.com.br";
+$emailPagseguro = "leonardo.rodrigues@summercomunicacao.com.br";
 $tokenPagseguro = "AC803C0ABCFE4D61B25D452F8FDC63B6";
 /* SANDBOX  */
 // $urlPagseguro = "https://ws.sandbox.pagseguro.uol.com.br/"; 

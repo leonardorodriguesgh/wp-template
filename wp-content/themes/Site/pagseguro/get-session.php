@@ -1,12 +1,12 @@
-<?
+<?php
 
-$urlPagseguro = "https://ws.pagseguro.uol.com.br/v2/"; 
-$emailPagseguro = "polonio@eslisieux.com.br";
-$tokenPagseguro = "AC803C0ABCFE4D61B25D452F8FDC63B6";
+//$urlPagseguro = "https://ws.pagseguro.uol.com.br/v2/"; 
+$emailPagseguro = "contato@summercomunicacao.com.br";
+//$tokenPagseguro = "AC803C0ABCFE4D61B25D452F8FDC63B6";
 /* SANDBOX  */
-// $urlPagseguro = "https://ws.sandbox.pagseguro.uol.com.br/"; 
+$urlPagseguro = "https://ws.sandbox.pagseguro.uol.com.br/"; 
 // $emailPagseguro = "contato@summercomunicacao.com.br";
-// $tokenPagseguro = "3665C3642B364E5493A7051C3E2942E6";
+$tokenPagseguro = "3665C3642B364E5493A7051C3E2942E6";
 
 // $emailPagseguro = "polonio@eslisieux.com.br";
 // $urlPagseguro = "https://ws.sandbox.pagseguro.uol.com.br/"; 

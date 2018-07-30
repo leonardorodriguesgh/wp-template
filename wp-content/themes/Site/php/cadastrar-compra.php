@@ -1,4 +1,4 @@
-<?
+<?php
 require("connection.php");
 require("class/phpmailer.php");
 
@@ -32,12 +32,14 @@ $info = (object) array(
 );
 
 
-$busca = $conn->prepare("SELECT MAX(cd_pagamento_inscricao) FROM `ci_pagamento_inscricao`");
+$busca = $conn->prepare("SELECT MAX(id_pagamento) FROM tb_pagamento");
 $busca->execute();
 $codigo = $busca->fetchColumn(0);
 $codigo = $codigo + 1;
-
-$insert = $conn->prepare("INSERT INTO `ci_pagamento_inscricao`( `cd_pagamento_inscricao`, `cd_responsavel_inscricao`, `cd_patrocinador`, `cd_status_pagamento`,  `vl_parcelas`, `qt_parcelas`, `vl_pago`, `vl_total`,  `nm_forma_pagamento`, `cd_compra`, `cd_compra_info`, `cd_curso`, `cd_turma_curso`) VALUES ($codigo, $info->inscricao, null, $info->status, $info->vl_parcelas, $info->qt_parcelas, $info->pago, $info->total, '$info->forma', '$info->codigo', '$info->info', $info->codProduto, $info->turma)");
+// responsavel, patrocinador `vl_parcelas`, `qt_parcelas`, `vl_pago`, `cd_compra_info`, `cd_curso`, `cd_turma_curso`
+$insert = $conn->prepare("INSERT INTO tb_pagamento( id_pagamento, id_status_pag,  vl_inscricao, total_transacao,
+ds_forma_pag, cd_transacao,vencimento) 
+VALUES ($codigo, $info->inscricao, null, $info->status, $info->vl_parcelas, $info->total, '$info->forma', '$info->codigo', $info->codProduto)");
 
 $insert->execute();
 
