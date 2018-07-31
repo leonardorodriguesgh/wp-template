@@ -1,10 +1,11 @@
 <?php
+//header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
 
 function gerarXmlBoleto($id, $produto, $desc, $valor, $usuario, $nome, $cpf, $ddd, $telefone, $email, $senderHash, $endereco, $numero, $complemento, $bairro, $cep, $cidade, $estado) {
   return "<payment>
   <mode>default</mode>
   <currency>BRL</currency>
-  <notificationURL>" . $notificationURL . "</notificationURL>
+  <notificationURL>" . $notificationURL  . "</notificationURL>
   <receiverEmail>" . $emailPagseguro . "</receiverEmail>
   <sender>
     <hash>". $senderHash . "</hash>
@@ -60,11 +61,11 @@ function gerarXmlCartao($id, $produto, $valor, $usuario, $nome, $cpf, $ddd, $tel
   return "<payment>
   <mode>default</mode>
   <currency>BRL</currency>
-  <notificationURL>" . $notificationURL . "</notificationURL>
-  <receiverEmail>" . $emailPagseguro . "</receiverEmail>
+  <notificationURL> </notificationURL>
+  <receiverEmail> </receiverEmail>
   <sender>
     <hash>". $senderHash . "</hash>
-    <ip>" . $_SERVER['REMOTE_ADDR'] . "</ip>
+    <ip>" . $_SERVER['REMOTE_ADDR'] . /*aqui*/"</ip>
     <email>". $email . "</email>
     <documents>
       <document>
@@ -73,8 +74,8 @@ function gerarXmlCartao($id, $produto, $valor, $usuario, $nome, $cpf, $ddd, $tel
       </document>
     </documents>
     <phone>
-      <areaCode>" . $ddd . "</areaCode>
-      <number>" . $telefone . "</number>
+      <areaCode>" . $ddd . /*aqui*/"</areaCode>/
+      <number>" . $telefone . /*aqui*/"</number>
     </phone>
     <name>" . $nome . "</name>
   </sender>
@@ -90,8 +91,8 @@ function gerarXmlCartao($id, $produto, $valor, $usuario, $nome, $cpf, $ddd, $tel
           </document>
         </documents>
       <phone>
-        <areaCode>" . $holdCardArea . "</areaCode>
-        <number>" . $holdCardFone . "</number>
+        <areaCode>" . $holdCardArea ./*aqui*/ "</areaCode>
+        <number>" . $holdCardFone ./*aqui*/ "</number>
       </phone>
     </holder>
     <billingAddress>
@@ -121,7 +122,7 @@ function gerarXmlCartao($id, $produto, $valor, $usuario, $nome, $cpf, $ddd, $tel
   <reference>" . $usuario . "</reference>
   <shipping>
     <address>
-      <street>" . $endereco . "</street>
+      <street>" /*TUDO*/. $endereco . "</street>
       <number>" . $numero . "</number>
       <complement>" . $complemento . "</complement>
       <district>" . $bairro . "</district>

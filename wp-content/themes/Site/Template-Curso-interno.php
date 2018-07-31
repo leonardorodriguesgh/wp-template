@@ -84,7 +84,7 @@
 				<div class="apresentacao_curso">
 					<picture>
 						<source media="(min-width: 768px)"id="testador"  srcset="<?php bloginfo('url')?>/s<?php echo $info_curso->image ?>">
-						<img class="img-responsive" src="<?php echo $info_curso->image_mob ?>" style="width:100%">
+						<img class="img-responsive" src="<?php echo $info_curso->image_mob ?>">
 					</picture>
 					<h3 class="ttl_curso"><?php echo $info_curso->titulo ?></h3>
 					

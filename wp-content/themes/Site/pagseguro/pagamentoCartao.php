@@ -1,9 +1,18 @@
 <?php
+//header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
+$link = mysqli_connect("localhost", "root", "", "lisieux_treinamento");
+
+mysqli_set_charset($link,"utf8");
+$sql = "SELECT A.celular FROM tb_aluno A INNER JOIN tb_usuario U ON A.id_usuario = U.codigo";//ta pegando dos dois users
+
+$query = mysqli_query($link, $sql);
+$tel = mysqli_fetch_assoc($query);
+$telefone = $tel['celular'];
+// $remstr = array("(", ")", " ", "-", ".");
+// implode('', $remstr);
 
 
-$remstr = array("(", ")", " ", "-", ".");
-
-$telefone = str_replace($remstr, "", $_POST['telefone']);
+//$telefone = str_replace($remstr, "", $tel);
 $ddd = substr($telefone, 0, 2);
 $telefone = substr($telefone, 2);
 
@@ -38,7 +47,7 @@ $card = (object) array(
 	"token" 		=> $_POST['cardToken'],
 	"nome" 			=> $_POST['cardNome'],
 	"nascimento" 	=> $_POST['cardNasc'],
-	"cpf" 			=> str_replace($remstr, "", $_POST['cardCPF']),
+	"cpf" 			=> $_POST['cardCPF'], //str_replace($remstr, "",) 
 	"ddd"			=> $ddd,
 	"telefone" 		=> $telefone
 );
@@ -54,31 +63,31 @@ $product = (object) array(
 	"id"			=> $_POST['id'],
 	"nome"			=> $_POST['produto'],
 );
-
+//var_dump( $_SERVER['REMOTE_ADDR']);
 include 'gerarXml.php';
 $xml = gerarXmlCartao($product->id, $product->nome, $payvalues->total, $client->usuario, $client->nome, $card->cpf, $client->ddd, $client->telefone, $client->email, $client->senderHash, $client->endereco, $client->numero, $client->complemento, $client->bairro, $client->cep, $client->cidade, $client->estado, $payment->endereco, $payment->numero, $payment->complemento, $payment->bairro, $payment->cep, $payment->cidade, $payment->estado, $card->token, $card->nome, $card->cpf, $card->nascimento, $card->ddd, $card->telefone, $payvalues->parcela, $payvalues->valor, $payvalues->max);
 
-// echo $xml;
-$urlPagseguro = "https://ws.pagseguro.uol.com.br/v2/"; 
-$emailPagseguro = "leonardo.rodrigues@summercomunicacao.com.br";
-$tokenPagseguro = "AC803C0ABCFE4D61B25D452F8FDC63B6";
+echo $xml;
+// $urlPagseguro = "https://ws.sandbox.pagseguro.uol.com.br/"; 
+// $emailPagseguro = "contato@summercomunicacao.com.br";
+// $tokenPagseguro = "3665C3642B364E5493A7051C3E2942E6";
 /* SANDBOX  */
 // $urlPagseguro = "https://ws.sandbox.pagseguro.uol.com.br/"; 
 // $emailPagseguro = "contato@summercomunicacao.com.br";
 // $tokenPagseguro = "43388955C35D45BDB52A6EC956A7D44F";
 
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $urlPagseguro . "transactions/?email=" . $emailPagseguro . "&token=" . $tokenPagseguro);
-curl_setopt($ch, CURLOPT_POST, true );
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/xml; charset=ISO-8859-1'));
+// $ch = curl_init();
+// curl_setopt($ch, CURLOPT_URL, $urlPagseguro . "transactions/?email=" . $emailPagseguro . "&token=" . $tokenPagseguro);
+// curl_setopt($ch, CURLOPT_POST, true );
+// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+// curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
+// curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/xml; charset=ISO-8859-1'));
 
-$data = curl_exec($ch);
-$dataXML = simplexml_load_string($data);
+// $data = curl_exec($ch);
+// $dataXML = simplexml_load_string($data);//da erro aqui tambem
 
-header('Content-Type: application/json; charset=UTF-8');
-echo json_encode($dataXML);
+// header('Content-Type: application/json; charset=UTF-8');
+// echo json_encode($dataXML);
  	
-curl_close($ch);
+// curl_close($ch);

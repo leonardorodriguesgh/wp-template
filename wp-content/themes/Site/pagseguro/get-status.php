@@ -1,8 +1,8 @@
 <?php
 
-$urlPagseguro = "https://ws.pagseguro.uol.com.br/v2/"; 
-$emailPagseguro = "leonardo.rodrigues@summercomunicacao.com.br";
-$tokenPagseguro = "AC803C0ABCFE4D61B25D452F8FDC63B6";
+$urlPagseguro = "https://ws.sandbox.pagseguro.uol.com.br/"; 
+$emailPagseguro = "contato@summercomunicacao.com.br";
+$tokenPagseguro = "3665C3642B364E5493A7051C3E2942E6";
 /* SANDBOX  */
 // $urlPagseguro = "https://ws.sandbox.pagseguro.uol.com.br/"; 
 // $tokenPagseguro = "43388955C35D45BDB52A6EC956A7D44F";

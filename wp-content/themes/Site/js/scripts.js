@@ -964,7 +964,8 @@ function fecharPedido(senderHash) {
                     maxQuantidadeParcelas: 5
 
                 },
-                beforeSend: function() {
+                beforeSend: function(data) {
+                    console.log(data);
                     $('.content_contas').append('\
                         <div id="alert-msg--carregando" class="alert alert-dark before-send" role="alert" style="display:block;position: fixed;top: 10%;left: 5%;width: 90%;background:#f4f4f4;color: #fff;border: none;text-align: center;padding-bottom: 20px;box-shadow: 0 0 27px 3px #334d4d45;">\
                           <a href="#" class="close" data-dismiss="alert" aria-label="close" style="font-size: 21px;font-weight: bolder;line-height: 1;color: #339966;position: relative;top: 10px;">&times;</a>\
@@ -995,7 +996,7 @@ function fecharPedido(senderHash) {
                         $(".situacao-cadastro").fadeIn('slow');
                         $('#js-situacao_titulo').html("Inscrição não concluída");
                         $('#js-situacao_descricao').html("Erro ao processar o seu pagamento <br> "+error_falha);
-                        $('#js-situacao_imagem').attr("src", "http://lisieuxtreinamento.com.br/wp-content/themes/Site/images/icon_falha.png");
+                        $('#js-situacao_imagem').attr("src", "http://localhost/wordpress/wp-content/themes/Site/images/icon_falha.png");
                     } else {
                         var i_inscricao = data.reference;
                         var i_vl_parcelas = (data.grossAmount / data.installmentCount);
@@ -1174,7 +1175,7 @@ function pagarBoleto(senderHash) {
 
                     var i_inscricao = data.reference;
                     var i_vl_parcelas = data.grossAmount;
-                    var i_qt_parcelas = data.installmentCount;
+                    var i_qt_parcelas = data.installmentCount;//installmentQuantity?
                     var i_pago = data.grossAmount;
                     var i_total = data.grossAmount;
                     var i_codigo = data.code;

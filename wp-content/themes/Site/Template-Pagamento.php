@@ -150,7 +150,10 @@
 					                <input type="hidden" class="js-complemento">
 									<h4><b>Você já está conectado</b> <br> <small>Escolha a forma de pagamento</small></h4>
 
-									<!-- : <?php  echo $wp_session['UserName']; ?>  -->
+									<?php 
+										echo $wp_session['UserID'];
+										echo $wp_session['UserName'];
+									?>
 
 								</form>
 								<div class="msg-conta">Você já possui uma compra deste curso.</div>
@@ -271,6 +274,7 @@
 										<select name="parcelas" id="parcelas">
 											<option value="" dafault>Parcelas</option>
 											<?php  
+												
 												if($cartao != null) {
 													for ($i=1; $i <= $cartao; $i++) { 
 														$valor_parcela = $price/$i;

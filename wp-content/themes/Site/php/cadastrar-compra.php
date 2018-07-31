@@ -27,7 +27,7 @@ $info = (object) array(
 	"cidade"   		=> $_POST['cidade'],
 	"estado"   		=> $_POST['estado'],
 	"pais"   		=> $_POST['pais'],
-  "curso"      => $_POST['curso'],
+    "curso"         => $_POST['curso'],
 	"turma"    		=> $_POST['turma']
 );
 
@@ -37,9 +37,9 @@ $busca->execute();
 $codigo = $busca->fetchColumn(0);
 $codigo = $codigo + 1;
 // responsavel, patrocinador `vl_parcelas`, `qt_parcelas`, `vl_pago`, `cd_compra_info`, `cd_curso`, `cd_turma_curso`
-$insert = $conn->prepare("INSERT INTO tb_pagamento( id_pagamento, id_status_pag,  vl_inscricao, total_transacao,
+$insert = $conn->prepare("INSERT INTO tb_pagamento( id_pagamento, id_inscricao, id_status_pag,  vl_inscricao, total_transacao,
 ds_forma_pag, cd_transacao,vencimento) 
-VALUES ($codigo, $info->inscricao, null, $info->status, $info->vl_parcelas, $info->total, '$info->forma', '$info->codigo', $info->codProduto)");
+VALUES ($codigo, $info->inscricao, $info->status, $info->vl_parcelas, $info->total, '$info->forma', '$info->codigo', $info->codProduto)");
 
 $insert->execute();
 
