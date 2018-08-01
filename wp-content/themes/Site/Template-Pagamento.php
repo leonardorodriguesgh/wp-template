@@ -137,7 +137,7 @@
 									<input type="hidden" value="" class="js-info">
 									<input type="hidden" value="<?php  echo $info_curso->id ?>" class="js-produto">
 									<input type="hidden" value="<?php  echo $info_curso->titulo ?>" class="js-desc_produto">
-					                <input type="hidden" class="js-nome">
+					                <input type="hidden" class="js-nome" value="<?php echo $wp_session['UserName']?>">
 					                <input type="hidden" class="js-email">
 					                <input type="hidden" class="js-telefone">
 					                <input type="hidden" class="js-cpf">
@@ -148,6 +148,8 @@
 					                <input type="hidden" class="js-bairro">
 					                <input type="hidden" class="js-numero">
 					                <input type="hidden" class="js-complemento">
+									<input type="hidden" class="js-session-id" value="<?= $wp_session['UserID']?>">
+									
 									<h4><b>Você já está conectado</b> <br> <small>Escolha a forma de pagamento</small></h4>
 
 									<?php 

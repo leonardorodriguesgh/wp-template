@@ -62,10 +62,10 @@ function gerarXmlCartao($id, $produto, $valor, $usuario, $nome, $cpf, $ddd, $tel
   <mode>default</mode>
   <currency>BRL</currency>
   <notificationURL> </notificationURL>
-  <receiverEmail> </receiverEmail>
+  <receiverEmail> contato@summercomunicacao.com.br </receiverEmail>
   <sender>
     <hash>". $senderHash . "</hash>
-    <ip>" . $_SERVER['REMOTE_ADDR'] . /*aqui*/"</ip>
+    <ip>" .  "10.0.0.105" . /*aqui se for localhost n é possivel usar $_SERVER['REMOTE_ADDR']*/"</ip>
     <email>". $email . "</email>
     <documents>
       <document>
@@ -74,8 +74,8 @@ function gerarXmlCartao($id, $produto, $valor, $usuario, $nome, $cpf, $ddd, $tel
       </document>
     </documents>
     <phone>
-      <areaCode>" . $ddd . /*aqui*/"</areaCode>/
-      <number>" . $telefone . /*aqui*/"</number>
+      <areaCode>" . $ddd . "</areaCode>/
+      <number>" . $telefone . "</number>
     </phone>
     <name>" . $nome . "</name>
   </sender>
@@ -91,8 +91,8 @@ function gerarXmlCartao($id, $produto, $valor, $usuario, $nome, $cpf, $ddd, $tel
           </document>
         </documents>
       <phone>
-        <areaCode>" . $holdCardArea ./*aqui*/ "</areaCode>
-        <number>" . $holdCardFone ./*aqui*/ "</number>
+        <areaCode>" . $holdCardArea . "</areaCode>
+        <number>" . $holdCardFone . "</number>
       </phone>
     </holder>
     <billingAddress>
@@ -122,7 +122,7 @@ function gerarXmlCartao($id, $produto, $valor, $usuario, $nome, $cpf, $ddd, $tel
   <reference>" . $usuario . "</reference>
   <shipping>
     <address>
-      <street>" /*TUDO*/. $endereco . "</street>
+      <street>" . $endereco . "</street>
       <number>" . $numero . "</number>
       <complement>" . $complemento . "</complement>
       <district>" . $bairro . "</district>

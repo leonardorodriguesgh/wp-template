@@ -893,11 +893,11 @@ function validarCartao(senderHash) {
         cvv: $("#cvv").val(),
         expirationMonth: $("#mes").val(),
         expirationYear: $("#ano").val(),
-
+        senderHash: $('#senderTrackingHash').val(),
         success: function(response) {
             $("#creditCardToken").val(response.card.token);
             cardTokenId = response.card.token;
-            console.log(response);
+            console.log(senderHash);
         },
         error: function(response) {
             console.log(response);
@@ -919,17 +919,19 @@ function fecharPedido(senderHash) {
             valorCurso = parseFloat(atob($(".product-all-track").find("aside.track-0").attr("data-track")).replace('.','').replace(',','.'));
 
             valorParcela = valorCurso / parcelas;
-
+            
             // console.log(valorParcela);
             $.ajax({
                 type: 'POST',
                 url: 'http://localhost/wordpress/wp-content/themes/Site/pagseguro/pagamentoCartao.php',
                 cache: false,
                 data: {
+                    senderTrackingHash: $('#senderTrackingHash').val(),
                     usuario: $('.js-codigo').val(),
-                    email: $('.js-email').val(),
+                    user_id: $('.js-session-id').val(),
+                    /*email: $('.js-email').val(),*/
                     email: 'c07591213297083290802@sandbox.pagseguro.com.br',
-                    nome: $('.js-nome').val(),
+                    nome: $('#cardnome').val(),
                     cpf: $('.js-cpf').val(),
                     telefone: $('.js-telefone').val(),
                     cep: $('.js-cep').val(),
@@ -1004,7 +1006,7 @@ function fecharPedido(senderHash) {
                         var i_pago = data.grossAmount;
                         var i_total = data.grossAmount;
                         var i_codigo = data.code;
-                        var i_info = data.items.item.description;
+                        var i_info = data.description;
 
                         // console.log(i_vl_parcelas);
                         $.ajax({
