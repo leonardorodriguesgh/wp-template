@@ -94,7 +94,7 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/xml; charset=ISO-8859-1'));
 
 
-header('Content-Type: application/json; charset=UTF-8');
+//header('Content-Type: application/json; charset=UTF-8');
 $data = curl_exec($ch);
 $dataXml = simplexml_load_string($data);//da erro aqui tambem
 echo json_encode($dataXml);

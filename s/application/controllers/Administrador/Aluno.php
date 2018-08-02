@@ -136,23 +136,23 @@ class Aluno extends CI_Controller {
 		
 		$data['aluno'] = $this->Aluno_model->getAluno($id);		
 		$data['alunoUsuario'] = $this->Aluno_model->getAlunoUsuario($id);  
-
+		
 		if(isset($_POST['ativar'])){
 
-			if($data['aluno']['ativo'] == 0){
-				$this->Aluno_model->ativaAluno();
+			if($data['aluno'][0]['ativo'] == 0){
+				$this->Aluno_model->ativaAluno($id);
 				
 				
 			}
-			return redirect(base_url('adm/pessoas/carregar_aluno'));
+			return redirect(base_url('administrador/aluno/select_aluno/'.$id));
 		}
 		if(isset($_POST['desativar'])){
 
-			if($data['aluno']['ativo'] == 1){
-				$this->Aluno_model->desativaAluno();			
+			if($data['aluno'][0]['ativo'] == 1){
+				$this->Aluno_model->desativaAluno($id);			
 				
 			}
-			return redirect(base_url('adm/pessoas/carregar_aluno'));
+			return redirect(base_url('administrador/aluno/select_aluno/'.$id));
 		}
 		
 	}
@@ -274,6 +274,7 @@ class Aluno extends CI_Controller {
 		$this->load->view('administrador/templates/header', $data);		
 		$this->load->view('administrador/templates/nav_menu',$data);
 		$data['aluno'] = $this->Aluno_model->getAluno($id);		
+		$data['getAtivo'] = $this->Aluno_model->getAlunoAtivo($id);
 		//var_dump($data['aluno']);
 
 		$data['alunoUsuario'] = $this->Aluno_model->getAlunoUsuario($id);  

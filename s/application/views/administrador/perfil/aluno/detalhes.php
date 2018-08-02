@@ -85,9 +85,10 @@
 					<strong>Status: </strong><br>
 					<p id="getAtivo" value="<?php if($alunoUsuario[0]['ativo'] == 1){ echo "Ativo"; }elseif($alunoUsuario[0]['ativo'] == 0){ echo "Inativo";}?>">
 						<?php
-							if($alunoUsuario[0]['ativo'] == 1){
+						//var_dump($getAtivo);
+							if($getAtivo['ativo'] == 1){
 								echo "Ativo";
-							}elseif($alunoUsuario[0]['ativo'] == 0){
+							}elseif($getAtivo['ativo'] == 0){
 								echo "Bloqueado";
 							}
 						?>					

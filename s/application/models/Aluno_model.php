@@ -29,10 +29,10 @@ class Aluno_model extends CI_Model {
     $res = $query->result();
     return $res;*/
   }  
-  public function ativaAluno(){
-     $ativo = 1;
+  public function ativaAluno($aluno){
+     
      $data = array(
-      'ativo' => $ativo 
+      'id_aluno' => $aluno 
       
     );
     //executa uma procedure que seleciona a tabela de especifico id
@@ -40,10 +40,10 @@ class Aluno_model extends CI_Model {
     return $this->Procedures->execute($this->_AtivarAluno, $data); 
 
   }
-  public function desativaAluno(){
-    $ativo = 0;
+  public function desativaAluno($aluno){
+    
      $data = array(
-      'ativo' => $ativo
+      'id_aluno' => $aluno
       
     );
     //executa uma procedure que seleciona a tabela de especifico id
@@ -78,6 +78,9 @@ class Aluno_model extends CI_Model {
     return $query->row_array();
   }
   
-  
+  public function getAlunoAtivo($id){
+    $query = $this->db->query("SELECT ativo FROM tb_aluno WHERE id_aluno = ".$id);
+    return $query->row_array();
+  }
   
 } 

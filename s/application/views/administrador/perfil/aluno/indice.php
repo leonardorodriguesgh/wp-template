@@ -49,7 +49,7 @@
 				//var_dump($query);
 				//var_dump($al);
 				foreach($query as $row):	
-						
+				var_dump($row);
 				echo validation_errors('<div class="alert alert-danger">','</div>');			
         		echo form_open('administrador/aluno/select_aluno/'.$row['id_aluno']);
 	        	/*echo var_dump($row);*/
